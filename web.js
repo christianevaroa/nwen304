@@ -9,6 +9,11 @@ var express = require('express')
 client = new pg.Client(connectionString);
 client.connect();
 
+app.configure(function(){
+  app.use(express.bodyParser());
+  app.use(app.router);
+});
+
 var lat;
 var lon;
 var monster;
@@ -34,7 +39,7 @@ app.post('/location', function(req,res) {
     }
     lat = req.body.lat;
     lon = req.body.lon;
-    monter = req.body.monster;
+    monster = req.body.monster;
     res.json(true);
 })
 
