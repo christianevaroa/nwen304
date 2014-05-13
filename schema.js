@@ -5,5 +5,5 @@ var pg = require('pg').native
 
 client = new pg.Client(connectionString);
 client.connect();
-query = client.query('CREATE TABLE locations (lat FLOAT) (lon FLOAT) (monster TEXT)');
+query = client.query('CREATE TABLE locations (lat FLOAT, lon FLOAT, monster TEXT)');
 query.on('end', function(result) { client.end(); });
