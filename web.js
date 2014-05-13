@@ -37,6 +37,7 @@ app.post('/location', function(req,res) {
      res.statusCode = 400;
      return res.send('Error 400: Post syntax incorrect.'); 
     }
+    client.query('INSERT INTO locations (lat, lon, monster) VALUES($1,$2,$3)', req.body.lat, req.body.lon, req.body.monster);
     lat = req.body.lat;
     lon = req.body.lon;
     monster = req.body.monster;
