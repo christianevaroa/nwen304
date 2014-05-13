@@ -11,32 +11,36 @@ client.connect();
 
 var lat;
 var lon;
+var monster;
 
 app.get('/', function(req, res) {
-  var date = new Date();
 
-  client.query('INSERT INTO visits(date) VALUES($1)', [date]);
-
-  query = client.query('SELECT COUNT(date) AS count FROM visits WHERE date = $1', [date]);
-  query.on('row', function(result) {
-    console.log(result);
+  query = client.query('SELECT * FROM locations');
+  query.on('row', function(err, result) {
+    console.log("row count: %d",result.rows.length);
 
     if (!result) {
       return res.send('No data found');
     } else {
-      res.send('Visits today: ' + result.count);
+      res.send("row count: %d",result.rows.length);
     }
   });
 });
 
+app.get('/location', function(req,res) {
+  res.send(lat + ", " + lon + ": " +monster);
+});
+
 app.post('/location', function(req,res) {
   if(!req.body.hasOwnProperty('lat') || 
-    !req.body.hasOwnProperty('lon')) {
+    !req.body.hasOwnProperty('lon') ||
+    !req.body.hasOwnProperty('monster')){
      res.statusCode = 400;
      return res.send('Error 400: Post syntax incorrect.'); 
     }
     lat = req.body.lat;
     lon = req.body.lon;
+    monter = req.body.monster;
     res.json(true);
 })
 

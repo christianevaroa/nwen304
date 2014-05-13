@@ -5,5 +5,5 @@ var pg = require('pg').native
 
 client = new pg.Client(connectionString);
 client.connect();
-query = client.query('CREATE TABLE visits (date date)');
+query = client.query('CREATE TABLE locations (lat double precision) (lon double precision) (monster text)');
 query.on('end', function(result) { client.end(); });
