@@ -9,6 +9,9 @@ var express = require('express')
 client = new pg.Client(connectionString);
 client.connect();
 
+var lat;
+var lon;
+
 app.get('/', function(req, res) {
   var date = new Date();
 
@@ -25,6 +28,17 @@ app.get('/', function(req, res) {
     }
   });
 });
+
+app.post('/location', function(req,res) {
+  if(!req.body.hasOwnProperty('lat') || 
+    !req.body.hasOwnProperty('lon')) {
+     res.statusCode = 400;
+     return res.send('Error 400: Post syntax incorrect.'); 
+    }
+    lat = req.body.lat;
+    lon = req.body.lon;
+    res.json(true);
+})
 
 app.listen(port, function() {
   console.log('Listening on:', port);
