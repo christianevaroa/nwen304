@@ -1,0 +1,5 @@
+This is a simple application that counts the number of times in a day that the root document is requested from the server.
+
+Code only slightly modified from that included in the tutorial from here:
+
+http://dailyjs.com/2011/09/26/heroku/

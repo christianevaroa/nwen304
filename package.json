@@ -1,0 +1,12 @@
+{
+  "name": "Lab3",
+  "version": "0.0.1",
+  "description": "Lab demonstrating use of postgres on Heroku",
+  "engines": {
+    "node": "0.10.26"
+  },
+  "dependencies": {
+    "express": "^3.5.1",
+    "pg": "^3.0.3"
+  }
+}
