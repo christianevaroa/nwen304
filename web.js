@@ -15,16 +15,10 @@ var monster;
 
 app.get('/', function(req, res) {
 
-  query = client.query('SELECT * FROM locations');
-  query.on('row', function(err, result) {
-    console.log("row count: %d",result.rows.length);
-
-    if (!result) {
-      return res.send('No data found');
-    } else {
-      res.send("row count: %d",result.rows.length);
-    }
+  client.query('SELECT * FROM locations', function(err, result) {
+    res.send('number of rows: '+result.rows.length);
   });
+  
 });
 
 app.get('/location', function(req,res) {
