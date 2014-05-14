@@ -11,9 +11,9 @@
   #monsterinput{
     
     width: 200px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -28,15 +28,15 @@
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
-          <div id="monsterinput">
-          <label for="latitude">Latitude</label>
-          <input name="latitude" id="latitude" type = "number">
-          <label for="longitude">longitude</label>
-          <input name="longitude" id="longitude" type= "number">
-          <label for="monstername">Monstername</label>
-          <input name="monstername" id="monstername" type="text">
-          <input type="submit" value="confirm monster" id="newmonsterbutton"/>
-          </div>
+      <div id="monsterinput">
+        <label for="latitude">Latitude</label>
+        <input name="latitude" id="latitude" type = "number">
+        <label for="longitude">longitude</label>
+        <input name="longitude" id="longitude" type= "number">
+        <label for="monstername">Monstername</label>
+        <input name="monstername" id="monstername" type="text">
+        <input type="submit" value="confirm monster" id="newmonsterbutton"/>
+      </div>
 
         
     </div><!-- /content -->
@@ -70,6 +70,11 @@ $(document).bind('pageinit', function() {
       //alert("Added quote number " + data.pos + " " + data.author + " " + data.text);
     }, 'json');
   });
+
+
+    function(){
+      var jsonUrl = "http://pure-gorge-4988.herokuapp.com/";
+    }
 
 
 

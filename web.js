@@ -37,6 +37,13 @@ app.get('/location', function(req,res) {
   res.send(lat + ", " + lon + ": " +monster);
 });
 
+app.get('/monsterlist', function(req, res) {
+  client.query('SELECT * FROM locations', function(err, result){
+    res.send(result);
+  });
+
+});
+
 app.post('/location', function(req,res) {
   if(!req.body.hasOwnProperty('lat') || 
     !req.body.hasOwnProperty('lon') ||
@@ -51,8 +58,8 @@ app.post('/location', function(req,res) {
     res.json(true);
 })
 
-app.listen(port, function() {
-  console.log('Listening on:', port);
+var server = app.listen(port || 3000, function() {
+  console.log('Listening on:', server.address().port);
 });
 
 // curl -v -H "Accept:application/json" -H "Content-type:application/json" -X POST -d '{"lat": -41.288916, "lon": 174.767911,"monster": "bob"}' http://pure-gorge-4988.herokuapp.com/location
