@@ -12,6 +12,7 @@ client.connect();
 app.configure(function(){
   app.use(express.bodyParser());
   app.use(app.router);
+  app.use(express.static(__dirname));
 });
 
 var lat;
@@ -23,6 +24,12 @@ app.get('/', function(req, res) {
   client.query('SELECT * FROM locations', function(err, result) {
     res.send('number of rows: '+result.rows.length);
   });
+  
+});
+
+app.get('/addmonster', function(req, res){
+
+  res.sendfile('monsterupload.html', {root: __dirname });
   
 });
 
