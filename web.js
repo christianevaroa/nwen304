@@ -33,8 +33,10 @@ app.get('/addmonster', function(req, res){
   
 });
 
-app.get('/location', function(req,res) {
-  res.send(lat + ", " + lon + ": " +monster);
+app.get('/location/:lat/:lon', function(req,res) {
+  client.query('SELECT * FROM locations WHERE lat=req.params.lat AND lon=req.params.lon', function(err, result) {
+    res.send(result);
+  });
 });
 
 app.get('/monsterlist', function(req, res) {
