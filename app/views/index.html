@@ -43,11 +43,11 @@
 		// var pathname = window.location.pathname;
 		// console.log(document.domain);
 
-    
+
 		var jsonUrl = "http://pure-gorge-4988.herokuapp.com/monsterlist";
 		$.getJSON(jsonUrl, function(data) {
 			var len = data;
-			$.each( data.fields, function( key, val ) {
+			$.each( data.rows, function( key, val ) {
 				console.log(key);
 				console.log(val);
 
