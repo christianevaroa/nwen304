@@ -42,7 +42,7 @@ app.get('/addmonster', function(req, res){
 });
 
 app.get('/location/:lat/:lon', function(req,res) {
-  client.query('SELECT * FROM locations WHERE lat=req.params.lat AND lon=req.params.lon', function(err, result) {
+  client.query('SELECT * FROM locations WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
     res.send(result);
   });
 });
