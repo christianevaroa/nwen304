@@ -37,7 +37,7 @@ app.post('/location', function(req,res) {
      res.statusCode = 400;
      return res.send('Error 400: Post syntax incorrect.'); 
     }
-    client.query('INSERT INTO locations (lat, lon, monster) VALUES($1,$2,$3)', req.body.lat, req.body.lon, req.body.monster);
+    client.query('INSERT INTO locations (lat, lon, monster) VALUES($1,$2,$3)', [req.body.lat, req.body.lon, req.body.monster]);
     lat = req.body.lat;
     lon = req.body.lon;
     monster = req.body.monster;
@@ -47,3 +47,5 @@ app.post('/location', function(req,res) {
 app.listen(port, function() {
   console.log('Listening on:', port);
 });
+
+// curl -v -H "Accept:application/json" -H "Content-type:application/json" -X POST -d '{"lat": -41.288916, "lon": 174.767911,"monster": "bob"}' http://pure-gorge-4988.herokuapp.com/location
