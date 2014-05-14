@@ -19,7 +19,15 @@ var lat;
 var lon;
 var monster;
 
-app.get('/', function(req, res) {
+
+app.get('/numberofrows', function(req, res) {
+
+
+
+});
+
+
+app.get('/numberofrows', function(req, res) {
 
   client.query('SELECT * FROM locations', function(err, result) {
     res.send('number of rows: '+result.rows.length);
