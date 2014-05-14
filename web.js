@@ -20,9 +20,8 @@ var lon;
 var monster;
 
 
-app.get('/numberofrows', function(req, res) {
-
-
+app.get('/', function(req, res) {
+  res.sendfile('/app/views/index.html', {root :__dirname });
 
 });
 
@@ -37,7 +36,7 @@ app.get('/numberofrows', function(req, res) {
 
 app.get('/addmonster', function(req, res){
 
-  res.sendfile('monsterupload.html', {root: __dirname });
+  res.sendfile('/app/views/monsterupload.html', {root: __dirname });
   
 });
 
