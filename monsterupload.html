@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+<style>
+
+  #monsterinput{
+    
+    width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+</style>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 </head>
@@ -18,31 +28,26 @@
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
+          <div id="monsterinput">
+          <label for="latitude">Latitude</label>
+          <input name="latitude" id="latitude" type = "number">
+          <label for="longitude">longitude</label>
+          <input name="longitude" id="longitude" type= "number">
+          <label for="monstername">Monstername</label>
+          <input name="monstername" id="monstername" type="text">
+          <input type="submit" value="confirm monster" id="newmonsterbutton"/>
+          </div>
 
-        <label for="text-1">Get a quote:</label>
-        <input name="text-1" id="text1" value="1" type="text">
-        <input type="submit" value="Submit Button" id="button1" />
-
-	<!-- put the result here -->
-	<div id="result"  class="functions"></div>
-
-        <label for="text-2">Add a new quote:</label>
-        <input type="submit" value="Submit Button" id="button2" />
-
+        
     </div><!-- /content -->
-    <input name="latitude" id="latitude" type = "text">
-    <input name="longitude" id="longitude" type= "text">
-    <input name="monstername" id="monstername" type="text">
 
-    <div data-role="footer">
-        <h4>Page Footer</h4>
-    </div><!-- /footer -->
+
 </div><!-- /page -->
 
 <script type="text/javascript">
 $(document).bind('pageinit', function() {
 
-  // alert("hello");
+
 
   $.ajaxSetup ({
     cache: false
@@ -58,6 +63,25 @@ $(document).bind('pageinit', function() {
       $("#result").html("<p><b>"+data.author+" said "+data.text+"</b></p>")
     }, 'json');
   });
+
+    $( "#newmonsterbutton" ).bind( "click", function(event, ui) {
+      var name = $("#monstername").val();
+      var latitude = $("#latitude").val();
+      var longitude = $("#longitude").val();
+    alert("new monster omg!\n" + name + " \n" + latitude + " \n" + longitude  );
+
+    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/location";
+    var newQuote = { "author" : "foo", "text" : "some text" };
+    var dataToUpload = { "lat" : latitude, "lon" : longitude, "monster"  : name      };
+
+
+    $.post(jsonUrl, dataToUpload, function(data) {
+      alert (" added " + data);
+      //alert("Added quote number " + data.pos + " " + data.author + " " + data.text);
+    }, 'json');
+  });
+
+
 
 
   $( "#button2" ).bind( "click", function(event, ui) {
