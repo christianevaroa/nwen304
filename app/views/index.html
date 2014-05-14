@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div id="container">
-		<img src="./assets/logo.png" id="logo" height=300>
+		<img src="./app/assets/logo.png" id="logo" height=300>
 		<div id="buttons">
 			<a href="/numberofrows">number of rows</a> <br>
 			<input type="submit" value="list monsters" id="listmonster"/>
@@ -40,8 +40,10 @@
 <script type="text/javascript">
 
 	$('#listmonster').bind( "click", function(event, ui) {
-		var pathname = window.location.pathname;
-		console.log(document.domain);
+		// var pathname = window.location.pathname;
+		// console.log(document.domain);
+
+    
 		var jsonUrl = "http://pure-gorge-4988.herokuapp.com/monsterlist";
 		$.getJSON(jsonUrl, function(data) {
 			var len = data;
@@ -56,24 +58,6 @@
 
 
 	});
-
-	    $( "#newmonsterbutton" ).bind( "click", function(event, ui) {
-	      var name = $("#monstername").val();
-	      var latitude = $("#latitude").val();
-	      var longitude = $("#longitude").val();
-	    alert("new monster omg!\n" + name + " \n" + latitude + " \n" + longitude  );
-
-	    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/location";
-	    var newQuote = { "author" : "foo", "text" : "some text" };
-	    var dataToUpload = { "lat" : latitude, "lon" : longitude, "monster"  : name      };
-
-
-    $.post(jsonUrl, dataToUpload, function(data) {
-      alert (" added " + data);
-      //alert("Added quote number " + data.pos + " " + data.author + " " + data.text);
-    }, 'json');
-  });
-
 
 
 
