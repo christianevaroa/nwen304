@@ -9,7 +9,7 @@
 <style>
   #container{
     
-    width: 200px;
+    width: 430px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -52,10 +52,10 @@
 				console.log(key); // index
 				console.log(val); // monster
         array.push(val); 
-        items.push('<li><strong>' + val.monster + ' : </strong></li>' 
+        items.push('<li><strong>' + val.monster + ' : </strong>' 
                       
-                     + "<li>latitude : " + val.lat + '</li>'
-                     + '<li>longitude : ' + val.lon + '</li>');
+                     + "<p>latitude : " + val.lat + '</p>'
+                     + '<p>longitude : ' + val.lon + '</p></li>');
 			});
       $('#result').html('');
       $('#result').append(items.join(''));
