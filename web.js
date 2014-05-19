@@ -22,7 +22,6 @@ var monster;
 
 app.get('/', function(req, res) {
   res.sendfile('/app/views/index.html', {root :__dirname });
-
 });
 
 
