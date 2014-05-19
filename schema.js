@@ -1,3 +1,5 @@
+// var localdatabase = postgres://username:password@host/database
+
 var pg = require('pg').native
   , connectionString = process.env.DATABASE_URL
   , client

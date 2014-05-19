@@ -20,18 +20,15 @@ var lon;
 var monster;
 
 
+/*
+ *  routes to pages
+ */
+
 app.get('/', function(req, res) {
   res.sendfile('/app/views/index.html', {root :__dirname });
 });
 
 
-app.get('/numberofrows', function(req, res) {
-
-  client.query('SELECT * FROM locations', function(err, result) {
-    res.send('number of rows: '+result.rows.length);
-  });
-  
-});
 
 app.get('/addmonster', function(req, res){
 
@@ -39,11 +36,20 @@ app.get('/addmonster', function(req, res){
   
 });
 
+app.get('/numberofrows', function(req, res) {
+
+  client.query('SELECT * FROM locations', function(err, result) {
+    res.send('number of rows: '+result.rows.length);
+  });
+});
+
+
 app.get('/location/:lat/:lon', function(req,res) {
   client.query('SELECT * FROM locations WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
     res.send(result);
   });
 });
+
 
 app.get('/monsterlist', function(req, res) {
   client.query('SELECT * FROM locations', function(err, result){
