@@ -44,18 +44,18 @@
 		// console.log(document.domain);
 
 		var jsonUrl = "http://pure-gorge-4988.herokuapp.com/monsterlist";
+    var array = [];
 		$.getJSON(jsonUrl, function(data) {
 			var len = data;
 			$.each( data.rows, function( key, val ) {
-				console.log(key);
-				console.log(val);
-
+				console.log(key); // index
+				console.log(val); // monster
+        array.push(val); 
 			});
+      console.log(array);
 			//$('#result').html();
 
 		}, 'json');
-
-
 	});
 
 
