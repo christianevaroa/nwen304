@@ -52,10 +52,10 @@
 				console.log(key); // index
 				console.log(val); // monster
         array.push(val); 
-        items.push('<li><strong>' +key + ' : </strong>  ' 
-                     + val.monster 
-                     + " latitude : " + val.lat 
-                     + ' longitude : ' + val.lon + '</li>');
+        items.push('<li><strong>' + val.monster + ' : </strong></li>' 
+                      
+                     + "<li>latitude : " + val.lat + '</li>'
+                     + '<li>longitude : ' + val.lon + '</li>');
 			});
       $('#result').html('');
       $('#result').append(items.join(''));
