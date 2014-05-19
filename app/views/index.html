@@ -52,8 +52,12 @@
 				console.log(key); // index
 				console.log(val); // monster
         array.push(val); 
-        items.push('<li>' +val.monster +  '</li>');
+        items.push('<li><strong>' +key + ' : </strong>  ' 
+                     + val.monster 
+                     + " latitude : " + val.lat 
+                     + ' longitude : ' + val.lon + '</li>');
 			});
+      $('#result').html('');
       $('#result').append(items.join(''));
       console.log(array);
 			//$('#result').html();
