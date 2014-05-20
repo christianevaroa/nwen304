@@ -19,19 +19,6 @@ var lat;
 var lon;
 var monster;
 
-function distance(lat1, lon1, lat2, lon2) {
-  var R = 6371; // Radius of the earth in km
-  var dLat = (lat2 - lat1) * Math.PI / 180;  // deg2rad below
-  var dLon = (lon2 - lon1) * Math.PI / 180;
-  var a = 
-     0.5 - Math.cos(dLat)/2 + 
-     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-     (1 - Math.cos(dLon))/2;
-
-  return R * 2 * Math.asin(Math.sqrt(a));
-}
-
-
 /*
  *  routes to pages
  */
@@ -88,8 +75,20 @@ app.get('/nearest/:mylat/:mylon', function(req, res) {
  */
  app.get('/getmonster/:mylat/:mylon', function(req, res) {
   client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
+
+  var distance = function (lat1, lon1, lat2, lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = (lat2 - lat1) * Math.PI / 180;  // deg2rad below
+  var dLon = (lon2 - lon1) * Math.PI / 180;
+  var a = 
+     0.5 - Math.cos(dLat)/2 + 
+     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+     (1 - Math.cos(dLon))/2;
+
+  return R * 2 * Math.asin(Math.sqrt(a));
+}
+
     // Need to make server decide if client is close enough to location and respond accordingly
-    var nearestlocation = JSON.parse(result.rows);
     res.send(nearestlocation);
     // var dist = distance(req.params.mylat, req.params.mylon, result.rows[0].lat, result.rows[0].lon);
     // res.send(dist);
