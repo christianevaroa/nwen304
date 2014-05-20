@@ -86,7 +86,7 @@ app.get('/nearest/:mylat/:mylon', function(req, res) {
  * Client sends current location, server decides if client is close enough to a location.
  * If client is close enough, send the monster to the client.
  */
- app.get('getmonster/:mylat/:mylon', function(req, res) {
+ app.get('/getmonster/:mylat/:mylon', function(req, res) {
   client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
     // Need to make server decide if client is close enough to location and respond accordingly
     var dist = distance(req.params.mylat, req.params.mylon, result.rows[0].lat, result[0].rows[0].lon);
