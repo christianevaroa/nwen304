@@ -42,7 +42,7 @@
 			 $.each( data.rows, function( key, val ) {
 			 	var myMarker = new google.maps.LatLng(val.lat, val.lon);
 			 	markers.push(myMarker);
-			 	new google.map.Marker({
+			 	new google.maps.Marker({
 			 		position : myMarker,
 			 		map : map,
 			 		title : val.monster 
