@@ -38,8 +38,9 @@
 	 	 	});
 	        var jsonUrl = "http://pure-gorge-4988.herokuapp.com/monsterlist";
 	 	 	$.getJSON(jsonUrl, function(data) {
-
+	 	 		console.log(data.rows);
 			 $.each( data.rows, function( key, val ) {
+			 	
 			 	var myMarker = new google.maps.LatLng(val.lat, val.lon);
 			 	markers.push(myMarker);
 			 	new google.maps.Marker({
