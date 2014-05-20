@@ -38,23 +38,26 @@
 	 	 	});
 	        var jsonUrl = "http://pure-gorge-4988.herokuapp.com/monsterlist";
 	 	 	$.getJSON(jsonUrl, function(data) {
-			// var len = data;
-			console.log(data);
 
 			 $.each( data.rows, function( key, val ) {
-			 	console.log("each " + val);
+			 	var myMarker = new google.maps.LatLng(val.lat, val.lon);
+			 	markers.push(myMarker);
+			 	new google.map.Marker({
+			 		position : myMarker,
+			 		map : map,
+			 		title : val.monster 
 
-			 	markers.push(new google.maps.LatLng(val.lat, val.lon));
-			 	console.log(markers);
+			 	});
+
 
 			 });
-			 for(var i =0; i< markers.length; i++){
-		      	new google.maps.Marker({
-			      position: markers[i],
-			      map: map,
-			      title: 'Hello World!'
-			  	});
-	    	}
+			 // for(var i =0; i< markers.length; i++){
+		  //     	new google.maps.Marker({
+			 //      position: markers[i],
+			 //      map: map,
+			 //      title: 'Hello World!'
+			 //  	});
+	   //  	}
 
 		}, 'json');
 
