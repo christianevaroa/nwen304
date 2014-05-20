@@ -57,6 +57,10 @@ app.get('/monsterlist', function(req, res) {
 
 });
 
+app.get('/map', function(req, res) {
+   res.sendfile('/app/views/map.html', {root: __dirname });
+ });
+
 /*
  * Client sends current latitude and longitude, server returns list of 5 nearest locations
  */

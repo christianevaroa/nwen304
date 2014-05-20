@@ -66,18 +66,6 @@
 	});
 
 
-
-	  $( "#button1" ).bind( "click", function(event, ui) {
-    var q = $("#text1").val();
-    alert("Click "+q);
-    var jsonUrl = "http://fathomless-crag-6103.herokuapp.com/quote/"+q;
-    alert("Fetching result from "+jsonUrl);
-    $.get(jsonUrl, function(data) {
-      alert(data.author);
-      $("#result").html("<p><b>"+data.author+" said "+data.text+"</b></p>")
-    }, 'json');
-  });
-
 	  var test = {
   "command": "SELECT",
   "rowCount": 3,
