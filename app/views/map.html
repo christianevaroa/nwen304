@@ -48,16 +48,17 @@
 			 	console.log(markers);
 
 			 });
-
-		}, 'json');
-
-	        for(var i =0; i< markers.length; i++){
+			 for(var i =0; i< markers.length; i++){
 		      	new google.maps.Marker({
 			      position: markers[i],
 			      map: map,
 			      title: 'Hello World!'
 			  	});
 	    	}
+
+		}, 'json');
+
+	       
 
 	    }
     	
