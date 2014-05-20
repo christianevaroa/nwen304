@@ -58,6 +58,10 @@ app.get('/monsterlist', function(req, res) {
 
 });
 
+app.get('/map', function(req, res) {
+   res.sendfile('/app/views/map.html', {root: __dirname });
+});
+
 app.post('/location', function(req,res) {
   if(!req.body.hasOwnProperty('lat') || 
     !req.body.hasOwnProperty('lon') ||

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 500px; width: 500px; }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkI5kDsdttdCHFA4aEj-mZuJVL7iXupBs&sensor=TRUE">
+    </script>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+
+    	$(document).ready(function(){  
+
+	    var myLatlng = new google.maps.LatLng(-41.28891, 174.767919);
+		var markers = [ 
+			myLatlng, new google.maps.LatLng(-41.294898,174.777632),
+			new google.maps.LatLng(-41.298509,174.777546),
+			new google.maps.LatLng(12,12)
+  		];
+	 
+
+
+	    function initialize() {
+	      	var center = new google.maps.LatLng( -41.288916, 174.767911);
+	        var mapOptions = {
+	          center: center,
+	          zoom: 12
+	        };
+	        var map = new google.maps.Map(document.getElementById("map-canvas"),
+	            mapOptions);
+
+	        var marker = new google.maps.Marker({
+	      		position: center,
+	      		map: map,
+	      		title: 'Hello World!'
+	 	 	});
+	        var jsonUrl = "http://pure-gorge-4988.herokuapp.com/monsterlist";
+	 	 	$.getJSON(jsonUrl, function(data) {
+			// var len = data;
+			console.log(data);
+			// $.each( data.rows, function( key, val ) {
+			// 	console.log(key); // index
+			// 	console.log(val); // monster
+   //      array.push(val); 
+   //      items.push('<li><strong>' + val.monster + ' : </strong>' 
+                      
+   //                   + "<p>latitude : " + val.lat + '</p>'
+   //                   + '<p>longitude : ' + val.lon + '</p></li>');
+			// });
+
+			//$('#result').html();
+
+		}, 'json');
+
+	        for(var i =0; i< markers.length; i++){
+		      	new google.maps.Marker({
+			      position: markers[i],
+			      map: map,
+			      title: 'Hello World!'
+			  	});
+	    	}
+
+	    }
+    	
+		
+     	
+
+    //   function getLats(){
+
+
+    //   }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+	});
+  
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+  </body>
+</html>
