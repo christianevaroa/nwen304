@@ -66,7 +66,7 @@ app.get('/map', function(req, res) {
  */
 app.get('/nearest/:mylat/:mylon', function(req, res) {
   client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 5', function(err, result) {
-    res.send(result);
+    res.send(result.rows);
   });
 });
 
