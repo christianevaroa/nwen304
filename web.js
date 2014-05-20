@@ -90,7 +90,7 @@ app.get('/nearest/:mylat/:mylon', function(req, res) {
   client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
     // Need to make server decide if client is close enough to location and respond accordingly
     var nearestlocation = JSON.parse(result.rows);
-    res.send(nearestlocation.monster);
+    res.send(nearestlocation);
     // var dist = distance(req.params.mylat, req.params.mylon, result.rows[0].lat, result.rows[0].lon);
     // res.send(dist);
   });
