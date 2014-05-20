@@ -43,7 +43,6 @@ app.get('/numberofrows', function(req, res) {
   });
 });
 
-
 app.get('/location/:lat/:lon', function(req,res) {
   client.query('SELECT * FROM locations WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
     res.send(result);
@@ -66,6 +65,17 @@ app.get('/nearest/:mylat/:mylon', function(req, res) {
     res.send(result);
   });
 });
+
+/*
+ * Client sends current location, server decides if client is close enough to a location.
+ * If client is close enough, send the monster to the client.
+ */
+ app.get('getmonster/:mylat/:mylon', function(req, res) {
+  client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
+    // Need to make server decide if client is close enough to location and respond accordingly
+    res.send(result);
+  });
+ });
 
 app.post('/location', function(req,res) {
   if(!req.body.hasOwnProperty('lat') || 
