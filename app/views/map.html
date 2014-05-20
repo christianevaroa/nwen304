@@ -40,17 +40,14 @@
 	 	 	$.getJSON(jsonUrl, function(data) {
 			// var len = data;
 			console.log(data);
-			// $.each( data.rows, function( key, val ) {
-			// 	console.log(key); // index
-			// 	console.log(val); // monster
-   //      array.push(val); 
-   //      items.push('<li><strong>' + val.monster + ' : </strong>' 
-                      
-   //                   + "<p>latitude : " + val.lat + '</p>'
-   //                   + '<p>longitude : ' + val.lon + '</p></li>');
-			// });
 
-			//$('#result').html();
+			 $.each( data.rows, function( key, val ) {
+			 	console.log("each " + val);
+
+			 	markers.push(new google.maps.LatLng(val.lat, val.lon));
+			 	console.log(markers);
+
+			 });
 
 		}, 'json');
 
