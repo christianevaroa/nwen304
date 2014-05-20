@@ -40,7 +40,10 @@
 	 	 	$.getJSON(jsonUrl, function(data) {
 			// var len = data;
 			console.log(data);
-			// $.each( data.rows, function( key, val ) {
+
+			 $.each( data.rows, function( key, val ) {
+
+			 	markers.push(new google.maps.LatLng(val.lat, val.lon));
 			// 	console.log(key); // index
 			// 	console.log(val); // monster
    //      array.push(val); 
@@ -48,7 +51,7 @@
                       
    //                   + "<p>latitude : " + val.lat + '</p>'
    //                   + '<p>longitude : ' + val.lon + '</p></li>');
-			// });
+			 });
 
 			//$('#result').html();
 
