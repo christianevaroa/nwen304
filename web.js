@@ -80,11 +80,21 @@ app.get('/nearest/:mylat/:mylon', function(req, res) {
     
     // Need to make server decide if client is close enough to location and respond accordingly
     if(dist < 0.001) {
+      // 10 metres
       res.send(result.rows[0].monster);
     }
     else {
       res.send("fail lol");
     }
+  });
+ });
+
+/*
+ * Get list of monsters the user has caught
+ */
+ app.get('/mymonsters/:uid', function(res, res) {
+  client.query('SELECT * FROM monsterdex WHERE userid = '+res.body.uid), function(err, result) {
+    res.send(result.rows);
   });
  });
 
@@ -104,7 +114,20 @@ app.post('/location', function(req,res) {
     lon = req.body.lon;
     monster = req.body.monster;
     res.json(true);
-})
+});
+
+/*
+ * Create a new user with a generated userid and send it back
+ */
+app.post('/createuser/:username', function(req,res) {
+  client.query('SELECT * FROM users ORDER BY userid LIMIT 1', function(err, result) {
+    var newid = +result.rows[0].userid + 1;
+    client.query('INSERT INTO users (userid, name, score, joindate) VALUES($1,$2,$3,$4)', [newid, res.body.username, 0, new Date()]);
+    client.query('SELECT * FROM users WHERE userid = '+newid, function(err2, result2) {
+      res.send(result2.rows[0]);
+    });
+  });
+});
 
 var server = app.listen(port || 3000, function() {
   console.log('Listening on:', server.address().port);
