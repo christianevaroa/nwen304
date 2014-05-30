@@ -59,7 +59,7 @@ app.get('/monsterlist', function(req, res) {
 });
 
 app.get('/map', function(req, res) {
-   res.sendfile('/app/views/map.html', {root: __dirname });
+   res.sendfile('/app/views/mapp.html', {root: __dirname });
  });
 
 /*
