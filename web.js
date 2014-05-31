@@ -15,7 +15,7 @@ app.configure(function(){
   app.use(express.static(__dirname));
 });
 
-require('./app/routes')(app, client); // put the routes in here. can change them later if we need. 
+require('/app/routes')(app, client); // put the routes in here. can change them later if we need. 
 
 var lat;
 var lon;
