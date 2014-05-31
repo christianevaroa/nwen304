@@ -16,7 +16,17 @@
   }
 
   img #logo{
-  	text-align: center;;
+  	text-align: center;
+  }
+  #navbar {
+    background: #ccc;
+    
+  }
+  #navbar a{
+    float : right;
+    right : 200px;
+    padding-right: 30px;
+    padding-top : 5px;
   }
 
 
@@ -25,6 +35,9 @@
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 </head>
 <body>
+  <div id="navbar">
+    <a href = "/admin" id="signin-link">sign in</a>
+  </div>
 	<div id="container">
 		<img src="./app/assets/logo.png" id="logo" height=300>
 		<div id="buttons">

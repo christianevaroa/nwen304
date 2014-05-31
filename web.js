@@ -27,7 +27,9 @@ app.get('/', function(req, res) {
   res.sendfile('/app/views/index.html', {root :__dirname });
 });
 
-
+app.get('/admin', function(req, res){
+  res.sendfile('/app/views/admin-signin.html', {root :__dirname });
+});
 
 app.get('/addmonster', function(req, res){
 
@@ -75,6 +77,7 @@ app.get('/nearest/:mylat/:mylon', function(req, res) {
  */
  app.get('/getmonster/:mylat/:mylon', function(req, res) {
   client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
+<<<<<<< HEAD
 
   //   var distance = function (lat1, lon1, lat2, lon2) {
   //   var R = 6371; // Radius of the earth in km
@@ -88,13 +91,25 @@ app.get('/nearest/:mylat/:mylon', function(req, res) {
   //   return R * 2 * Math.asin(Math.sqrt(a));
   // }
 
+=======
+    //calculate distance in km from user's location to nearest location in table
+    var dist = distance(+req.params.mylat, +req.params.mylon, +result.rows[0].lat, +result.rows[0].lon);
+    
+>>>>>>> afdb9843600ac82774f37d7db1b637e3d5dba1ec
     // Need to make server decide if client is close enough to location and respond accordingly
-    res.send(result);
-    // var dist = distance(req.params.mylat, req.params.mylon, result.rows[0].lat, result.rows[0].lon);
-    // res.send(dist);
+    if(dist < 0.001) {
+      res.send(result.rows[0].monster);
+    }
+    else {
+      res.send("fail lol");
+    }
   });
 });
 
+/*
+ * Post a new location
+ * Requires latitude, longitude and monster name
+ */
 app.post('/location', function(req,res) {
   if(!req.body.hasOwnProperty('lat') || 
     !req.body.hasOwnProperty('lon') ||
@@ -112,3 +127,26 @@ app.post('/location', function(req,res) {
 var server = app.listen(port || 3000, function() {
   console.log('Listening on:', server.address().port);
 });
+
+/*
+ * Work out distance in kilometres between 2 latitude/longitude locations 
+ */
+var distance = function (lat1, lon1, lat2, lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = (lat2 - lat1) * Math.PI / 180;
+  var dLon = (lon2 - lon1) * Math.PI / 180;
+  var a = 
+     0.5 - Math.cos(dLat)/2 + 
+     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+     (1 - Math.cos(dLon))/2;
+
+  return R * 2 * Math.asin(Math.sqrt(a));
+  }
+
+
+
+// SQL stuff:
+// TABLE locations: lat (latitude), lon (longitude), monster (monster stored at that location)
+// TABLE monsterdex: userid (user's id), monsterid (id of a monster owned by that user)
+// TABLE friends: userid (user's id), friendid (id of another user that userid has added as a friend)
+// TABLE users: userid (user's id - assigned when signing up), name (username, 30 characters), score (total score from monsters collected), joindate (might not use this)
