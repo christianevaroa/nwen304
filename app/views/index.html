@@ -84,7 +84,8 @@
 
   $('#numberofrows').bind("click", function(event, ui){
     var jsonUrl = "http://pure-gorge-4988.herokuapp.com/numberofrows";
-    console.log('click');
+    // console.log('click');
+    // doens't work because the link doesn't send json and im lazy
     $.getJSON(jsonUrl, function(data) {
 
       console.log(data);
