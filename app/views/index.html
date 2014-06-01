@@ -42,6 +42,7 @@
 		<img src="./app/assets/logo.png" id="logo" height=300>
 		<div id="buttons">
 			<a href="/numberofrows" data-ajax="false">number of rows</a> <br>
+      <input type="submit" value="number of rows" id="numberofrows"/>
 			<input type="submit" value="list monsters" id="listmonster"/>
 			<a href="/addmonster" data-ajax="false">add monster</a>
       <a href="/map" data-ajax="false">Go to Map</a>
@@ -80,6 +81,15 @@
 		}, 'json');
 	});
 
+
+  $('#numberofrows').bind("click", function(event, ui){
+    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/numberofrows";
+    $.getJSON(jsonUrl, function(data) {
+      $('#result').html('');
+      $('#result').append(data);
+
+    }, 'json');
+  });
 
 	  var test = {
   "command": "SELECT",
