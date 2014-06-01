@@ -84,7 +84,10 @@
 
   $('#numberofrows').bind("click", function(event, ui){
     var jsonUrl = "http://pure-gorge-4988.herokuapp.com/numberofrows";
+    console.log('click');
     $.getJSON(jsonUrl, function(data) {
+
+      console.log(data);
       $('#result').html('');
       $('#result').append(data);
 
