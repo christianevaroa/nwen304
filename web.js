@@ -5,6 +5,7 @@ var express = require('express')
   , connectionString = process.env.DATABASE_URL
   , start = new Date()
   , port = process.env.PORT
+  , passport = require('passport')
   , client;
 
 client = new pg.Client(connectionString);
