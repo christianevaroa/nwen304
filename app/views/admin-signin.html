@@ -63,7 +63,8 @@ $('#login').bind( "click", function(event, ui) {
   var password = $("input#password").val();  
 
    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/signin";
-   var dataToUpload = JSON.stringify({ name: username, password : password });
+   // var dataToUpload = JSON.stringify({ name: username, password : password });
+   var dataToUpload = {name: username, password: password};
    console.log(dataToUpload);
 
    $.post(jsonUrl, dataToUpload, function(data) {
