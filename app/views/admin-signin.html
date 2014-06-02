@@ -67,15 +67,15 @@ $('#login').bind( "click", function(event, ui) {
    $.post(jsonUrl, dataToUpload, function(data) {
           alert (" added " + data);
 
-          if(data.id && data.username ){
+          if(data.id && data.name ){
             hideButtons();
-            $('#result').append("Hi " + data.username +  "<br> Your id number is : " + data.id);         
+            $('#result').append("Hi " + data.name +  "<br> Your id number is : " + data.id);         
           }
           //alert("Added quote number " + data.pos + " " + data.author + " " + data.text);
-          if(localStorage){
-            var json = { id:data.id, username: data.username};
-            localStorage.setItem("user", JSON.stringify(json)) ;
-          }
+          // if(localStorage){
+          //   var json = { id:data.id, name: data.name};
+          //   localStorage.setItem("user", JSON.stringify(json)) ;
+          // }
     }, 'json');
 
 

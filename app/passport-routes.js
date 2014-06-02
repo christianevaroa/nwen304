@@ -10,7 +10,7 @@ module.exports = function(app, passport){
 		function(req, res) {
 			console.log('user ' );
 
-			var jsonData = { id: req.user.id, username: req.user.username };
+			var jsonData = { id: req.user.id, name: req.user.name };
 			console.log(jsonData);
 			res.send(jsonData);
 	});
