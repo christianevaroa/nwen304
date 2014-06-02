@@ -43,7 +43,7 @@ module.exports = function(app, client){
 	});
 
 	app.get('/map', function(req, res) {
-	   res.sendfile('/app/views/mapp.html', {root: __dirname });
+	   res.sendfile('/views/map.html', {root: __dirname });
 	 });
 
 	/*
