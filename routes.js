@@ -23,7 +23,7 @@ module.exports = function(app, client){
 
 	  client.query('SELECT * FROM locations', function(err, result) {
 	    // res.send('number of rows: '+result.rows.length);
-	    var rowsJson = { numberofrows : result.row.length };
+	    var rowsJson = { numberofrows : result.rows.length };
 	    res.json(rowsJson);
 	  });
 	});
