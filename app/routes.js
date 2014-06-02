@@ -36,8 +36,7 @@ module.exports = function(app, client, passport){
 		});
 	});
 
-
-	app.get('/', function(req, res) {
+	app.get('/', isSignedIn, function(req, res) {
 	  res.sendfile('/views/index.html', {root :__dirname });
 	});
 
@@ -163,7 +162,15 @@ var distance = function (lat1, lon1, lat2, lon2) {
      (1 - Math.cos(dLon))/2;
 
   return R * 2 * Math.asin(Math.sqrt(a));
-  }
+}
+
+
+function isSignedIn(req, res, next) {
+	if(req.isAuthenticated()){
+		return next(); 
+	}
+	res.redirect('/signin');
+}
 
 
 
