@@ -3,7 +3,7 @@ module.exports = function(app, passport){
 
 
 	app.get('/signin', function(req, res){
-		res.sendfile('/views/admin-signin.html');
+		res.sendfile('/views/admin-signin.html', {root :__dirname });
 	});
 
 	app.post('/signin', passport.authenticate('local-signin', {session :false }),
