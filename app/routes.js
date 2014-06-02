@@ -17,7 +17,7 @@ module.exports = function(app, client, passport){
 
 			var jsonData = { id: req.user.id, name: req.user.name };
 			console.log(jsonData);
-			res.send(jsonData);
+			res.json(jsonData);
 	});
 
 
