@@ -79,7 +79,7 @@ module.exports = function(passport, client) {
 
 	function findById(id, fn){
 	  // used to deserialize the user id.
-	  var selectString = 'SELECT * FROM users2 WHERE id = $1'; // have to wrap user name in quotes
+	  var selectString = 'SELECT * FROM users WHERE id = $1'; // have to wrap user name in quotes
 	  var query = client.query(selectString, [id]);
 
 	  query.on('row', function(result) {
@@ -96,7 +96,7 @@ module.exports = function(passport, client) {
 	 */
 	function findByUsername(username, fn) {
 	 // console.log("2: findByUsername. User =  " + username);
-	  var selectString = 'SELECT * FROM users2 WHERE username = $1'; // have to wrap user name in quotes
+	  var selectString = 'SELECT * FROM users WHERE username = $1'; // have to wrap user name in quotes
 	  var query = client.query(selectString, [username]);
 	  
 	  query.on('row', function(result) {
