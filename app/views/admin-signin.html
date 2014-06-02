@@ -39,11 +39,11 @@
   <div id="container">
     <img src="./app/assets/logo.png" id="logo" height=300>
     <div id="user-form">
-    <form action='/signin' id='login-form' method='post'>
+    <!-- <form action='/signin' id='login-form' method='post'> -->
       username: <input type="text" name="name" id="name"><br>
       password: <input type="password" class="form-control" name="password" id="password">
       <input type="submit" value="login" id="login"/>
-    </form>
+    <!-- </form> -->
     </div>
 
     <div id="result">
@@ -52,42 +52,42 @@
   </div>
 </body>
 <script type="text/javascript">
-// console.log("admin 2");
-// $(document).bind('pageinit', function() {
-//   $.ajaxSetup ({
-//     cache: false
-//   });
+console.log("admin 2");
+$(document).bind('pageinit', function() {
+  $.ajaxSetup ({
+    cache: false
+  });
 
-// $('#login').bind( "click", function(event, ui) {
-//   var username = $("input#username").val();
-//   var password = $("input#password").val();  
+$('#login').bind( "click", function(event, ui) {
+  var username = $("input#username").val();
+  var password = $("input#password").val();  
 
-//    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/signin";
-//    var dataToUpload = JSON.stringify({ name: username, password : password });
-//    console.log(dataToUpload);
+   var jsonUrl = "http://pure-gorge-4988.herokuapp.com/signin";
+   var dataToUpload = JSON.stringify({ name: username, password : password });
+   console.log(dataToUpload);
 
-//    $.post(jsonUrl, dataToUpload, function(data) {
-//           alert (" added " + data);
+   $.post(jsonUrl, dataToUpload, function(data) {
+          alert (" added " + data);
 
-//           if(data.id && data.name ){
-//             hideButtons();
-//             $('#result').append("Hi " + data.name +  "<br> Your id number is : " + data.id);         
-//           }
-//           // if(localStorage){
-//           //   var json = { id:data.id, name: data.name};
-//           //   localStorage.setItem("user", JSON.stringify(json)) ;
-//           // }
-//     }, 'json');
+          if(data.id && data.name ){
+            hideButtons();
+            $('#result').append("Hi " + data.name +  "<br> Your id number is : " + data.id);         
+          }
+          // if(localStorage){
+          //   var json = { id:data.id, name: data.name};
+          //   localStorage.setItem("user", JSON.stringify(json)) ;
+          // }
+    }, 'json');
 
 
-//   });
+  });
   
-//   function hideButtons(){
-//     $('#user-form').hide();
+  function hideButtons(){
+    $('#user-form').hide();
 
-//   }
+  }
 
-// });
+});
 
 </script>
 </html>
