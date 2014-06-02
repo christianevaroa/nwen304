@@ -6,16 +6,16 @@ module.exports = function(app, client){
  */
 
 	app.get('/', function(req, res) {
-	  res.sendfile('/app/views/index.html', {root :__dirname });
+	  res.sendfile('./app/views/index.html', {root :__dirname });
 	});
 
 	app.get('/admin', function(req, res){
-	  res.sendfile('/app/views/admin-signin.html', {root :__dirname });
+	  res.sendfile('./app/views/admin-signin.html', {root :__dirname });
 	});
 
 	app.get('/addmonster', function(req, res){
 
-	  res.sendfile('/app/views/monsterupload.html', {root: __dirname });
+	  res.sendfile('./app/views/monsterupload.html', {root: __dirname });
 	  
 	});
 
