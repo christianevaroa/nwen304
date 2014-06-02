@@ -11,7 +11,7 @@ module.exports = function(app, client, passport){
 	});
 
 	app.post('/signin', 
-		passport.authenticate('local-signin', {session :false }),
+		passport.authenticate('local-signin', { session :false }),
 		function(req, res) {
 			console.log('user ' );
 
