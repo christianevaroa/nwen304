@@ -1,9 +1,26 @@
 
-module.exports = function(app, client){
+module.exports = function(app, client, passport){
 
 /*
  *  routes to pages
  */
+
+
+ 	app.get('/signin', function(req, res){
+		res.sendfile('/views/admin-signin.html', {root :__dirname });
+	});
+
+	app.post('/signin', 
+		passport.authenticate('local-signin', {session :false }),
+		function(req, res) {
+			console.log('user ' );
+
+			var jsonData = { id: req.user.id, name: req.user.name };
+			console.log(jsonData);
+			res.send(jsonData);
+	});
+
+
 
 	app.get('/', function(req, res) {
 	  res.sendfile('/views/index.html', {root :__dirname });
