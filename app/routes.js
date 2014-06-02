@@ -39,7 +39,6 @@ module.exports = function(app, client){
 	  client.query('SELECT * FROM locations', function(err, result){
 	    res.send(result);
 	  });
-
 	});
 
 	app.get('/map', function(req, res) {
@@ -113,8 +112,6 @@ module.exports = function(app, client){
 	    });
 	  });
 	});
-
-
 }
 
 // private functions, functions for money

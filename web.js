@@ -16,6 +16,8 @@ app.configure(function(){
 });
 
 require('./app/routes')(app, client); // put the routes in here. can change them later if we need. 
+require('./app/passport')(passport, client);
+require('./app/passport-routes.js')(app, passport);
 
 var lat;
 var lon;

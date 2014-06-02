@@ -16,7 +16,7 @@
   }
 
   img #logo{
-  	text-align: center;;
+    text-align: center;;
   }
     #navbar {
     background: grey;
@@ -33,27 +33,60 @@
 </style>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
 </head>
 <body>
-	<div id="container">
-		<img src="./app/assets/logo.png" id="logo" height=300>
+  <div id="container">
+    <img src="./app/assets/logo.png" id="logo" height=300>
+    <div id="user-form">
+      username: <input type="text" name="username" id="username"><br>
+      password: <input type="password" class="form-control" name="password" id="password">
+      <input type="submit" value="login" id="login"/>
+    </div>
 
-    <form>
-      username: <input type="text" name="firstname"><br>
-      password: <input type="text" name="lastname">
-    </form>
+    <div id="result">
 
-		<div id="buttons">
-		
-			<input type="submit" value="login" id="login"/>
-		</div>
-		<div id="result">
-
-		</div>
-	</div>
+    </div>
+  </div>
 </body>
 <script type="text/javascript">
+console.log("admin 2");
+$(document).bind('pageinit', function() {
+  $.ajaxSetup ({
+    cache: false
+  });
 
+$('#login').bind( "click", function(event, ui) {
+  var username = $("input#username").val();
+  var password = $("input#password").val();  
+
+   var jsonUrl = "http://localhost:3000/admin";
+   var dataToUpload = { username: username, password : password };
+   // console.log(dataToUpload);
+
+   // $.post(jsonUrl, dataToUpload, function(data) {
+   //        alert (" added " + data);
+
+   //        if(data.id && data.username ){
+   //          hideButtons();
+   //          $('#result').append("Hi " + data.username +  "<br> Your id number is : " + data.id);         
+   //        }
+   //        //alert("Added quote number " + data.pos + " " + data.author + " " + data.text);
+   //        if(localStorage){
+   //          var json = { id:data.id, username: data.username};
+   //          localStorage.setItem("user", JSON.stringify(json)) ;
+   //        }
+   //  }, 'json');
+
+
+  });
+  
+  function hideButtons(){
+    $('#user-form').hide();
+
+  }
+
+});
 
 </script>
 </html>
