@@ -30,6 +30,12 @@ module.exports = function(app, client, passport){
 	});
 
 
+	app.get('/mytestfunction', function(req, res){
+		client.query('SELECT * FROM users', function(err, result){
+			res.send(result);
+		});
+	});
+
 
 	app.get('/', function(req, res) {
 	  res.sendfile('/views/index.html', {root :__dirname });
