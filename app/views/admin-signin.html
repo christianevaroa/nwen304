@@ -62,21 +62,21 @@ $('#login').bind( "click", function(event, ui) {
 
    var jsonUrl = "http://localhost:3000/admin";
    var dataToUpload = { username: username, password : password };
-   // console.log(dataToUpload);
+   console.log(dataToUpload);
 
-   // $.post(jsonUrl, dataToUpload, function(data) {
-   //        alert (" added " + data);
+   $.post(jsonUrl, dataToUpload, function(data) {
+          alert (" added " + data);
 
-   //        if(data.id && data.username ){
-   //          hideButtons();
-   //          $('#result').append("Hi " + data.username +  "<br> Your id number is : " + data.id);         
-   //        }
-   //        //alert("Added quote number " + data.pos + " " + data.author + " " + data.text);
-   //        if(localStorage){
-   //          var json = { id:data.id, username: data.username};
-   //          localStorage.setItem("user", JSON.stringify(json)) ;
-   //        }
-   //  }, 'json');
+          if(data.id && data.username ){
+            hideButtons();
+            $('#result').append("Hi " + data.username +  "<br> Your id number is : " + data.id);         
+          }
+          //alert("Added quote number " + data.pos + " " + data.author + " " + data.text);
+          if(localStorage){
+            var json = { id:data.id, username: data.username};
+            localStorage.setItem("user", JSON.stringify(json)) ;
+          }
+    }, 'json');
 
 
   });
