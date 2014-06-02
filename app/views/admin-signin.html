@@ -59,8 +59,10 @@ $(document).bind('pageinit', function() {
   });
 
 $('#login').bind( "click", function(event, ui) {
-  var username = $("input#username").val();
+  var username = $("input#name").val();
   var password = $("input#password").val();  
+  console.log(username);
+
 
    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/signin";
    // var dataToUpload = JSON.stringify({ name: username, password : password });
