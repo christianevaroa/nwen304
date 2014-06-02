@@ -22,7 +22,9 @@ module.exports = function(app, client){
 	app.get('/numberofrows', function(req, res) {
 
 	  client.query('SELECT * FROM locations', function(err, result) {
-	    res.send('number of rows: '+result.rows.length);
+	    // res.send('number of rows: '+result.rows.length);
+	    var rowsJson = { numberofrows : result.row.length };
+	    res.json(rowsJson);
 	  });
 	});
 
@@ -141,3 +143,11 @@ var distance = function (lat1, lon1, lat2, lon2) {
 // TABLE monsterdex: userid (user's id), monsterid (id of a monster owned by that user)
 // TABLE friends: userid (user's id), friendid (id of another user that userid has added as a friend)
 // TABLE users: userid (user's id - assigned when signing up), name (username, 30 characters), score (total score from monsters collected), joindate (might not use this)
+// 02/06 created new users table
+
+// CREATE TABLE users (id SERIAL, name varchar(30), password varchar(40), score integer, joindate DATE );
+
+
+// INSERT INTO users (name, score, password, joindate) VALUES('admin', 69, 'admin', current_date);
+
+
