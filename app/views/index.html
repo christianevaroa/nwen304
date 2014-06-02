@@ -87,7 +87,7 @@
     // doens't work because the link doesn't send json and im lazy
     $.getJSON(jsonUrl, function(data) {
 
-      console.log(data);
+      console.log(data.numberofrows);
       $('#result').html('');
       $('#result').append(data);
 
