@@ -164,3 +164,5 @@ var distance = function (lat1, lon1, lat2, lon2) {
 // INSERT INTO users (name, score, password, joindate) VALUES('admin', 69, 'admin', current_date);
 
 
+
+// INSERT INTO users (name, score, password, joindate) VALUES('user', 69, 'user', current_date);

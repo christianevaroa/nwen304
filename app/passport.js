@@ -3,18 +3,18 @@ var LocalStrategy   = require('passport-local').Strategy;
 module.exports = function(passport, client) {
 
 	// LOCAL SIGN IN 
-	passport.use('local-signin' , new LocalStrategy(
-	  function(username, password, done) {
+	passport.use('local-signin' , new LocalStrategy( 
+	  function(name, password, done) {
 	    // asynchronous verification, for effect...
 	    process.nextTick(function () {
 
-	      console.log("1 : " + username);
+	      console.log("1 : " + name);
 	      // Find the user by username.  If there is no user with the given
 	      // username, or the password is not correct, set the user to `false` to
 	      // indicate failure and set a flash message.  Otherwise, return the
 	      // authenticated `user`.
 
-	        findByUsername(username, function(err, user) {
+	        findByUsername(name, function(err, user) {
 	            if (err) { 
 	            	return done(err); }
 	            if (!user) {  
