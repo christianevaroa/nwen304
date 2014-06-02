@@ -10,24 +10,24 @@ module.exports = function(app, client, passport){
 		res.sendfile('/views/admin-signin.html', {root :__dirname });
 	});
 
-	// app.post('/signin', 
-	// 	passport.authenticate('local-signin', { session :false }),
-	// 	function(req, res) {
-	// 		console.log('user ' );
-
-	// 		var jsonData = { id: req.user.id, name: req.user.name };
-
-
-	// 		console.log(jsonData);
-	// 		res.json(jsonData);
-	// });
-
 	app.post('/signin', 
-		passport.authenticate('local-signin', {successRedirect: '/', failureRedirect: '/signin', failureFlash: true}),
-			function(req, res){
-				res.sendfile('/views/index.html', { message: req.flash('error') });
-		
+		passport.authenticate('local-signin', { session :false }),
+		function(req, res) {
+			console.log('user ' );
+
+			var jsonData = { id: req.user.id, name: req.user.name };
+
+
+			console.log(jsonData);
+			res.json(jsonData);
 	});
+
+	// app.post('/signin', 
+	// 	passport.authenticate('local-signin', {successRedirect: '/', failureRedirect: '/signin', failureFlash: true}),
+	// 		function(req, res){
+	// 			res.sendfile('/views/index.html', { message: req.flash('error') });
+		
+	// });
 
 
 	app.get('/mytestfunction', function(req, res){
