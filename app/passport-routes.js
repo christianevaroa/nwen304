@@ -3,7 +3,7 @@ module.exports = function(app, passport){
 
 
 	app.get('/signin', function(req, res){
-		res.sendfile('/view/admin-signin.html');
+		res.sendfile('/views/admin-signin.html');
 	});
 
 	app.post('/signin', passport.authenticate('local-signin', {session :false }),
@@ -14,7 +14,7 @@ module.exports = function(app, passport){
 			console.log(jsonData);
 			res.send(jsonData);
 	});
-	
+
 }
 
 
