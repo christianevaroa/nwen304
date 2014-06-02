@@ -1,4 +1,4 @@
-passport.jsvar LocalStrategy   = require('passport-local').Strategy;
+var LocalStrategy   = require('passport-local').Strategy;
 
 module.exports = function(passport, client) {
 
