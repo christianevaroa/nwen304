@@ -96,7 +96,7 @@ module.exports = function(passport, client) {
 	 */
 	function findByUsername(username, fn) {
 	 // console.log("2: findByUsername. User =  " + username);
-	  var selectString = 'SELECT * FROM users WHERE username = $1'; // have to wrap user name in quotes
+	  var selectString = 'SELECT * FROM users WHERE name = $1'; // have to wrap user name in quotes
 	  var query = client.query(selectString, [username]);
 	  
 	  query.on('row', function(result) {
