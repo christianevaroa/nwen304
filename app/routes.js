@@ -11,7 +11,7 @@ module.exports = function(app, client, passport){
 	});
 
 	app.post('/signin', 
-		passport.authenticate('local-signin', { session :false }),
+		passport.authenticate('local-signin', { session: false } ),
 		function(req, res) {
 			console.log('user ' );
 
@@ -36,7 +36,7 @@ module.exports = function(app, client, passport){
 		});
 	});
 
-	app.get('/', isSignedIn, function(req, res) {
+	app.get('/', function(req, res) {
 	  res.sendfile('/views/index.html', {root :__dirname });
 	});
 
