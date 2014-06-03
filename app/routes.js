@@ -107,10 +107,14 @@ module.exports = function(app, client, passport){
 	/*
 	 * Get list of monsters the user has caught
 	 */
-	 app.get('/mymonsters/:uid', function(res, res) {
+	 app.get('/mymonsters/:uid', function(req, res) {
 	  client.query('SELECT * FROM monsterdex WHERE userid = '+res.body.uid, function(err, result) {
 	    res.send(result.rows);
 	  });
+	 });
+
+	 app.get('/getbill/', function(req, res) {
+	 	res.send('https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg');
 	 });
 
 	/*
