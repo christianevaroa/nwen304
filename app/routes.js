@@ -96,9 +96,9 @@ module.exports = function(app, client, passport){
 
 	    var monstername = result.rows[0].monster;
 
-	    client.query('SELECT * FROM monsters WHERE name = \''+monstername+'\'', function(err2, result2) {
+	    client.query('SELECT * FROM monsters WHERE name = \''+monstername+'\' LIMIT 1', function(err2, result2) {
 	    if(dist < 0.001) {
-	      res.send(result2.rows);
+	      res.send(result2.rows[0]);
 	    }
 	    else {
 	      res.send("fail lol");
