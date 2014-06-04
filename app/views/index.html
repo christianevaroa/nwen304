@@ -70,7 +70,9 @@
         items.push('<li><strong>' + val.name + ' : </strong>' 
                       
                      + "<p>latitude : " + val.lat + '</p>'
-                     + '<p>longitude : ' + val.lon + '</p></li>');
+                     + '<p>longitude : ' + val.lon + '</p>'
+                     + '<p>description : ' + val.description + '</p>'
+                     + '<p>image: <img src="' + val.picture + '></p></li>');
 			});
       $('#result').html('');
       $('#result').append(items.join(''));
