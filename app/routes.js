@@ -25,7 +25,6 @@ module.exports = function(app, client, passport){
 	app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
 		function(req, res){
 			var jsonData = {"name" : "mr bojangles"};
-
 			res.json(jsonData);
 	});
 
