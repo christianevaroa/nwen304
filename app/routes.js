@@ -52,7 +52,7 @@ module.exports = function(app, client, passport){
 
 	app.get('/numberofrows', function(req, res) {
 
-	  client.query('SELECT * FROM locations', function(err, result) {
+	  client.query('SELECT * FROM monsters', function(err, result) {
 	    // res.send('number of rows: '+result.rows.length);
 	    var jsonval = { numberofrows: result.rows.length };
 	    res.json( jsonval );
@@ -60,7 +60,7 @@ module.exports = function(app, client, passport){
 	});
 
 	app.get('/location/:lat/:lon', function(req,res) {
-	  client.query('SELECT * FROM locations WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
+	  client.query('SELECT * FROM monsters WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
 	    res.send(result);
 	  });
 	});
@@ -80,7 +80,7 @@ module.exports = function(app, client, passport){
 	 * Client sends current latitude and longitude, server returns list of 5 nearest locations
 	 */
 	app.get('/nearest/:mylat/:mylon', function(req, res) {
-	  client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 5', function(err, result) {
+	  client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 5', function(err, result) {
 	    res.send(result.rows);
 	  });
 	});
@@ -90,19 +90,15 @@ module.exports = function(app, client, passport){
 	 * If client is close enough, send the monster to the client.
 	 */
 	 app.get('/getmonster/:mylat/:mylon', function(req, res) {
-	  client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
+	  client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
 	    //calculate distance in km from user's location to nearest location in table
 	    var dist = distance(+req.params.mylat, +req.params.mylon, +result.rows[0].lat, +result.rows[0].lon);
 
-	    var monstername = result.rows[0].monster;
-
-	    client.query('SELECT * FROM monsters WHERE name = \''+monstername+'\' LIMIT 1', function(err2, result2) {
 	    if(dist < 0.001) {
 	      res.send(result2.rows[0]);
 	    }
 	    else {
 	      res.send("fail lol");
-	    }
 	    });
 	    
 	    // Need to make server decide if client is close enough to location and respond accordingly
