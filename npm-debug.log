@@ -1,0 +1,300 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/pkg/bin/node', '/usr/pkg/bin/npm', 'install' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 warn package.json Project@0.0.1 No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ '/am/phoenix/home1/evaroachri/NWEN304/pure-gorge-4988',
+6 verbose install   [ 'express',
+6 verbose install     'pg',
+6 verbose install     'passport',
+6 verbose install     'passport-local',
+6 verbose install     'connect-flash',
+6 verbose install     'cloudinary' ] ]
+7 info preinstall Project@0.0.1
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'passport-local@1.0.0', null ]
+10 verbose cache add name=undefined spec="passport-local@1.0.0" args=["passport-local@1.0.0",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'passport-local@1.0.0',
+11 verbose parsed url   path: 'passport-local@1.0.0',
+11 verbose parsed url   href: 'passport-local@1.0.0' }
+12 verbose cache add name="passport-local" spec="1.0.0" args=["passport-local","1.0.0"]
+13 verbose parsed url { protocol: null,
+13 verbose parsed url   slashes: null,
+13 verbose parsed url   auth: null,
+13 verbose parsed url   host: null,
+13 verbose parsed url   port: null,
+13 verbose parsed url   hostname: null,
+13 verbose parsed url   hash: null,
+13 verbose parsed url   search: null,
+13 verbose parsed url   query: null,
+13 verbose parsed url   pathname: '1.0.0',
+13 verbose parsed url   path: '1.0.0',
+13 verbose parsed url   href: '1.0.0' }
+14 verbose addNamed [ 'passport-local', '1.0.0' ]
+15 verbose addNamed [ '1.0.0', '1.0.0' ]
+16 verbose cache add [ 'express@^3.5.1', null ]
+17 verbose cache add name=undefined spec="express@^3.5.1" args=["express@^3.5.1",null]
+18 verbose parsed url { protocol: null,
+18 verbose parsed url   slashes: null,
+18 verbose parsed url   auth: null,
+18 verbose parsed url   host: null,
+18 verbose parsed url   port: null,
+18 verbose parsed url   hostname: null,
+18 verbose parsed url   hash: null,
+18 verbose parsed url   search: null,
+18 verbose parsed url   query: null,
+18 verbose parsed url   pathname: 'express@^3.5.1',
+18 verbose parsed url   path: 'express@^3.5.1',
+18 verbose parsed url   href: 'express@^3.5.1' }
+19 verbose cache add name="express" spec="^3.5.1" args=["express","^3.5.1"]
+20 verbose parsed url { protocol: null,
+20 verbose parsed url   slashes: null,
+20 verbose parsed url   auth: null,
+20 verbose parsed url   host: null,
+20 verbose parsed url   port: null,
+20 verbose parsed url   hostname: null,
+20 verbose parsed url   hash: null,
+20 verbose parsed url   search: null,
+20 verbose parsed url   query: null,
+20 verbose parsed url   pathname: '^3.5.1',
+20 verbose parsed url   path: '^3.5.1',
+20 verbose parsed url   href: '^3.5.1' }
+21 verbose addNamed [ 'express', '^3.5.1' ]
+22 verbose addNamed [ null, '>=3.5.1-0 <4.0.0-0' ]
+23 verbose cache add [ 'pg@^3.0.3', null ]
+24 verbose cache add name=undefined spec="pg@^3.0.3" args=["pg@^3.0.3",null]
+25 verbose parsed url { protocol: null,
+25 verbose parsed url   slashes: null,
+25 verbose parsed url   auth: null,
+25 verbose parsed url   host: null,
+25 verbose parsed url   port: null,
+25 verbose parsed url   hostname: null,
+25 verbose parsed url   hash: null,
+25 verbose parsed url   search: null,
+25 verbose parsed url   query: null,
+25 verbose parsed url   pathname: 'pg@^3.0.3',
+25 verbose parsed url   path: 'pg@^3.0.3',
+25 verbose parsed url   href: 'pg@^3.0.3' }
+26 verbose cache add name="pg" spec="^3.0.3" args=["pg","^3.0.3"]
+27 verbose parsed url { protocol: null,
+27 verbose parsed url   slashes: null,
+27 verbose parsed url   auth: null,
+27 verbose parsed url   host: null,
+27 verbose parsed url   port: null,
+27 verbose parsed url   hostname: null,
+27 verbose parsed url   hash: null,
+27 verbose parsed url   search: null,
+27 verbose parsed url   query: null,
+27 verbose parsed url   pathname: '^3.0.3',
+27 verbose parsed url   path: '^3.0.3',
+27 verbose parsed url   href: '^3.0.3' }
+28 verbose addNamed [ 'pg', '^3.0.3' ]
+29 verbose addNamed [ null, '>=3.0.3-0 <4.0.0-0' ]
+30 verbose cache add [ 'connect-flash@0.1.1', null ]
+31 verbose cache add name=undefined spec="connect-flash@0.1.1" args=["connect-flash@0.1.1",null]
+32 verbose parsed url { protocol: null,
+32 verbose parsed url   slashes: null,
+32 verbose parsed url   auth: null,
+32 verbose parsed url   host: null,
+32 verbose parsed url   port: null,
+32 verbose parsed url   hostname: null,
+32 verbose parsed url   hash: null,
+32 verbose parsed url   search: null,
+32 verbose parsed url   query: null,
+32 verbose parsed url   pathname: 'connect-flash@0.1.1',
+32 verbose parsed url   path: 'connect-flash@0.1.1',
+32 verbose parsed url   href: 'connect-flash@0.1.1' }
+33 verbose cache add name="connect-flash" spec="0.1.1" args=["connect-flash","0.1.1"]
+34 verbose parsed url { protocol: null,
+34 verbose parsed url   slashes: null,
+34 verbose parsed url   auth: null,
+34 verbose parsed url   host: null,
+34 verbose parsed url   port: null,
+34 verbose parsed url   hostname: null,
+34 verbose parsed url   hash: null,
+34 verbose parsed url   search: null,
+34 verbose parsed url   query: null,
+34 verbose parsed url   pathname: '0.1.1',
+34 verbose parsed url   path: '0.1.1',
+34 verbose parsed url   href: '0.1.1' }
+35 verbose addNamed [ 'connect-flash', '0.1.1' ]
+36 verbose addNamed [ '0.1.1', '0.1.1' ]
+37 verbose cache add [ 'passport@0.2.0', null ]
+38 verbose cache add name=undefined spec="passport@0.2.0" args=["passport@0.2.0",null]
+39 verbose parsed url { protocol: null,
+39 verbose parsed url   slashes: null,
+39 verbose parsed url   auth: null,
+39 verbose parsed url   host: null,
+39 verbose parsed url   port: null,
+39 verbose parsed url   hostname: null,
+39 verbose parsed url   hash: null,
+39 verbose parsed url   search: null,
+39 verbose parsed url   query: null,
+39 verbose parsed url   pathname: 'passport@0.2.0',
+39 verbose parsed url   path: 'passport@0.2.0',
+39 verbose parsed url   href: 'passport@0.2.0' }
+40 verbose cache add name="passport" spec="0.2.0" args=["passport","0.2.0"]
+41 verbose parsed url { protocol: null,
+41 verbose parsed url   slashes: null,
+41 verbose parsed url   auth: null,
+41 verbose parsed url   host: null,
+41 verbose parsed url   port: null,
+41 verbose parsed url   hostname: null,
+41 verbose parsed url   hash: null,
+41 verbose parsed url   search: null,
+41 verbose parsed url   query: null,
+41 verbose parsed url   pathname: '0.2.0',
+41 verbose parsed url   path: '0.2.0',
+41 verbose parsed url   href: '0.2.0' }
+42 verbose addNamed [ 'passport', '0.2.0' ]
+43 verbose addNamed [ '0.2.0', '0.2.0' ]
+44 verbose cache add [ 'cloudinary@', null ]
+45 verbose cache add name=undefined spec="cloudinary@" args=["cloudinary@",null]
+46 verbose parsed url { protocol: null,
+46 verbose parsed url   slashes: null,
+46 verbose parsed url   auth: null,
+46 verbose parsed url   host: null,
+46 verbose parsed url   port: null,
+46 verbose parsed url   hostname: null,
+46 verbose parsed url   hash: null,
+46 verbose parsed url   search: null,
+46 verbose parsed url   query: null,
+46 verbose parsed url   pathname: 'cloudinary@',
+46 verbose parsed url   path: 'cloudinary@',
+46 verbose parsed url   href: 'cloudinary@' }
+47 verbose cache add name="cloudinary" spec="" args=["cloudinary",""]
+48 verbose parsed url { protocol: null,
+48 verbose parsed url   slashes: null,
+48 verbose parsed url   auth: null,
+48 verbose parsed url   host: null,
+48 verbose parsed url   port: null,
+48 verbose parsed url   hostname: null,
+48 verbose parsed url   hash: null,
+48 verbose parsed url   search: null,
+48 verbose parsed url   query: null,
+48 verbose parsed url   pathname: null,
+48 verbose parsed url   path: null,
+48 verbose parsed url   href: '' }
+49 verbose addNamed [ 'cloudinary', '' ]
+50 verbose addNamed [ null, '*' ]
+51 silly lockFile 8defd22e-passport-local-1-0-0 passport-local@1.0.0
+52 verbose lock passport-local@1.0.0 /u/students/evaroachri/.npm/8defd22e-passport-local-1-0-0.lock
+53 silly lockFile 4c8453bd-express-3-5-1 express@^3.5.1
+54 verbose lock express@^3.5.1 /u/students/evaroachri/.npm/4c8453bd-express-3-5-1.lock
+55 silly lockFile dbbf7b04-pg-3-0-3 pg@^3.0.3
+56 verbose lock pg@^3.0.3 /u/students/evaroachri/.npm/dbbf7b04-pg-3-0-3.lock
+57 silly lockFile 0cdf4f98-connect-flash-0-1-1 connect-flash@0.1.1
+58 verbose lock connect-flash@0.1.1 /u/students/evaroachri/.npm/0cdf4f98-connect-flash-0-1-1.lock
+59 silly lockFile 315c7a7b-passport-0-2-0 passport@0.2.0
+60 verbose lock passport@0.2.0 /u/students/evaroachri/.npm/315c7a7b-passport-0-2-0.lock
+61 silly lockFile 5ede61c5-cloudinary cloudinary@
+62 verbose lock cloudinary@ /u/students/evaroachri/.npm/5ede61c5-cloudinary.lock
+63 silly addNameRange { name: 'express', range: '>=3.5.1-0 <4.0.0-0', hasData: false }
+64 silly addNameRange { name: 'pg', range: '>=3.0.3-0 <4.0.0-0', hasData: false }
+65 silly addNameRange { name: 'cloudinary', range: '*', hasData: false }
+66 verbose url raw passport-local/1.0.0
+67 verbose url resolving [ 'https://registry.npmjs.org/', './passport-local/1.0.0' ]
+68 verbose url resolved https://registry.npmjs.org/passport-local/1.0.0
+69 info trying registry request attempt 1 at 16:13:37
+70 http GET https://registry.npmjs.org/passport-local/1.0.0
+71 verbose url raw pg
+72 verbose url resolving [ 'https://registry.npmjs.org/', './pg' ]
+73 verbose url resolved https://registry.npmjs.org/pg
+74 info trying registry request attempt 1 at 16:13:37
+75 http GET https://registry.npmjs.org/pg
+76 verbose url raw connect-flash/0.1.1
+77 verbose url resolving [ 'https://registry.npmjs.org/', './connect-flash/0.1.1' ]
+78 verbose url resolved https://registry.npmjs.org/connect-flash/0.1.1
+79 info trying registry request attempt 1 at 16:13:37
+80 http GET https://registry.npmjs.org/connect-flash/0.1.1
+81 verbose url raw passport/0.2.0
+82 verbose url resolving [ 'https://registry.npmjs.org/', './passport/0.2.0' ]
+83 verbose url resolved https://registry.npmjs.org/passport/0.2.0
+84 info trying registry request attempt 1 at 16:13:37
+85 http GET https://registry.npmjs.org/passport/0.2.0
+86 verbose url raw cloudinary
+87 verbose url resolving [ 'https://registry.npmjs.org/', './cloudinary' ]
+88 verbose url resolved https://registry.npmjs.org/cloudinary
+89 info trying registry request attempt 1 at 16:13:37
+90 http GET https://registry.npmjs.org/cloudinary
+91 verbose url raw express
+92 verbose url resolving [ 'https://registry.npmjs.org/', './express' ]
+93 verbose url resolved https://registry.npmjs.org/express
+94 info trying registry request attempt 1 at 16:13:37
+95 verbose etag "A01GW17BNFLN4NVULBF5O1HKC"
+96 http GET https://registry.npmjs.org/express
+97 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+98 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+99 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+100 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+101 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+102 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+103 info trying registry request attempt 2 at 16:13:47
+104 http GET https://registry.npmjs.org/pg
+105 info trying registry request attempt 2 at 16:13:47
+106 http GET https://registry.npmjs.org/connect-flash/0.1.1
+107 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+108 info trying registry request attempt 2 at 16:13:47
+109 http GET https://registry.npmjs.org/passport/0.2.0
+110 info trying registry request attempt 2 at 16:13:47
+111 http GET https://registry.npmjs.org/passport-local/1.0.0
+112 info trying registry request attempt 2 at 16:13:47
+113 http GET https://registry.npmjs.org/cloudinary
+114 info trying registry request attempt 2 at 16:13:47
+115 verbose etag "A01GW17BNFLN4NVULBF5O1HKC"
+116 http GET https://registry.npmjs.org/express
+117 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+118 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+119 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+120 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+121 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+122 info trying registry request attempt 3 at 16:14:47
+123 http GET https://registry.npmjs.org/pg
+124 info trying registry request attempt 3 at 16:14:47
+125 http GET https://registry.npmjs.org/connect-flash/0.1.1
+126 info trying registry request attempt 3 at 16:14:47
+127 http GET https://registry.npmjs.org/cloudinary
+128 info trying registry request attempt 3 at 16:14:47
+129 http GET https://registry.npmjs.org/passport/0.2.0
+130 info trying registry request attempt 3 at 16:14:47
+131 http GET https://registry.npmjs.org/passport-local/1.0.0
+132 info trying registry request attempt 3 at 16:14:48
+133 verbose etag "A01GW17BNFLN4NVULBF5O1HKC"
+134 http GET https://registry.npmjs.org/express
+135 silly lockFile dbbf7b04-pg-3-0-3 pg@^3.0.3
+136 silly lockFile dbbf7b04-pg-3-0-3 pg@^3.0.3
+137 silly lockFile 0cdf4f98-connect-flash-0-1-1 connect-flash@0.1.1
+138 silly lockFile 0cdf4f98-connect-flash-0-1-1 connect-flash@0.1.1
+139 silly lockFile 5ede61c5-cloudinary cloudinary@
+140 silly lockFile 5ede61c5-cloudinary cloudinary@
+141 silly lockFile 315c7a7b-passport-0-2-0 passport@0.2.0
+142 silly lockFile 315c7a7b-passport-0-2-0 passport@0.2.0
+143 silly lockFile 8defd22e-passport-local-1-0-0 passport-local@1.0.0
+144 silly lockFile 8defd22e-passport-local-1-0-0 passport-local@1.0.0
+145 silly registry.get cb [ 304, undefined ]
+146 verbose etag express from cache
+147 error network tunneling socket could not be established, cause=140078519060288:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:787:
+147 error network
+147 error network This is most likely not a problem with npm itself
+147 error network and is related to network connectivity.
+147 error network In most cases you are behind a proxy or have bad network settings.
+147 error network
+147 error network If you are behind a proxy, please make sure that the
+147 error network 'proxy' config is set properly.  See: 'npm help config'
+148 error System Linux 3.12.9-2-ARCH
+149 error command "/usr/pkg/bin/node" "/usr/pkg/bin/npm" "install"
+150 error cwd /am/phoenix/home1/evaroachri/NWEN304/pure-gorge-4988
+151 error node -v v0.10.26
+152 error npm -v 1.4.3
+153 error code ECONNRESET
+154 verbose exit [ 1, true ]

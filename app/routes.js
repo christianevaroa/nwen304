@@ -93,14 +93,20 @@ module.exports = function(app, client, passport){
 	  client.query('SELECT * FROM locations ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
 	    //calculate distance in km from user's location to nearest location in table
 	    var dist = distance(+req.params.mylat, +req.params.mylon, +result.rows[0].lat, +result.rows[0].lon);
-	    
-	    // Need to make server decide if client is close enough to location and respond accordingly
-	    if(dist < 0.001) {
-	      res.send(result.rows[0].monster);
+
+	    var monstername = result.rows[0].monster;
+
+	    client.query('SELECT * FROM monsters WHERE name = '+monstername, function(err2, result2) {
+	    	if(dist < 0.001) {
+	      res.send(result2);
 	    }
 	    else {
 	      res.send("fail lol");
 	    }
+	    });
+	    
+	    // Need to make server decide if client is close enough to location and respond accordingly
+	    
 	  });
 	});
 
