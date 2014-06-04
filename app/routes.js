@@ -22,6 +22,15 @@ module.exports = function(app, client, passport){
 			res.json(jsonData);
 	});
 
+	app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
+		function(req, res){
+			var jsonData = {"name" : "mr bojangles"};
+
+			res.json(jsonData);
+	});
+
+
+
 	// app.post('/signin', 
 	// 	passport.authenticate('local-signin', {successRedirect: '/', failureRedirect: '/signin', failureFlash: true}),
 	// 		function(req, res){
