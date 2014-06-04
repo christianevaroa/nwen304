@@ -109,10 +109,7 @@ module.exports = function(app, client, passport){
 	    }
 	    else {
 	      res.send("fail lol");
-	    });
-	    
-	    // Need to make server decide if client is close enough to location and respond accordingly
-	    
+	    }
 	  });
 	});
 
