@@ -11,7 +11,7 @@ module.exports = function(app, client, passport){
 	});
 
 	app.post('/signin', 
-		passport.authenticate('local-signin', { session :false }),
+		passport.authenticate('local-signin', { session: false } ),
 		function(req, res) {
 			console.log('user ' );
 
@@ -36,7 +36,7 @@ module.exports = function(app, client, passport){
 		});
 	});
 
-	app.get('/', isSignedIn, function(req, res) {
+	app.get('/', function(req, res) {
 	  res.sendfile('/views/index.html', {root :__dirname });
 	});
 
@@ -113,10 +113,14 @@ module.exports = function(app, client, passport){
 	/*
 	 * Get list of monsters the user has caught
 	 */
-	 app.get('/mymonsters/:uid', function(res, res) {
+	 app.get('/mymonsters/:uid', function(req, res) {
 	  client.query('SELECT * FROM monsterdex WHERE userid = '+res.body.uid, function(err, result) {
 	    res.send(result.rows);
 	  });
+	 });
+
+	 app.get('/getbill/', function(req, res) {
+	 	res.send('https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg');
 	 });
 
 	/*
