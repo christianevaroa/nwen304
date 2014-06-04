@@ -75,7 +75,7 @@ module.exports = function(app, client, passport){
 
 
 	app.get('/monsterlist', function(req, res) {
-	  client.query('SELECT * FROM locations', function(err, result){
+	  client.query('SELECT * FROM monsters', function(err, result){
 	    res.send(result);
 	  });
 	});
@@ -104,14 +104,19 @@ module.exports = function(app, client, passport){
 
 	    if(dist < 0.001) {
 	      res.send(result2.rows[0]);
+	      // ADD MONSTER TO USER LIST
 	    }
 	    else {
 	      res.send("fail lol");
 	    }
+<<<<<<< HEAD
 	    
 	    // Need to make server decide if client is close enough to location and respond accordingly
 	    
 	  	});
+=======
+	  });
+>>>>>>> 1abc1faee9bbad1a89249e20902b3bec2108f8a2
 	});
 
 	/*
@@ -134,11 +139,13 @@ module.exports = function(app, client, passport){
 	app.post('/location', function(req,res) {
 	  if(!req.body.hasOwnProperty('lat') || 
 	    !req.body.hasOwnProperty('lon') ||
-	    !req.body.hasOwnProperty('monster')){
+	    !req.body.hasOwnProperty('name') ||
+	    !req.body.hasOwnProperty('description') ||
+	    !req.body.hasOwnProperty('picture')){
 	     res.statusCode = 400;
 	     return res.send('Error 400: Post syntax incorrect.'); 
 	    }
-	    client.query('INSERT INTO locations (lat, lon, monster) VALUES($1,$2,$3)', [req.body.lat, req.body.lon, req.body.monster]);
+	    client.query('INSERT INTO monsters (lat, lon, name, description, picture) VALUES($1,$2,$3,$4,$5)', [req.body.lat, req.body.lon, req.body.name, req.body.description, req.body.picture]);
 	    lat = req.body.lat;
 	    lon = req.body.lon;
 	    monster = req.body.monster;
