@@ -109,14 +109,11 @@ module.exports = function(app, client, passport){
 	    else {
 	      res.send("fail lol");
 	    }
-<<<<<<< HEAD
 	    
 	    // Need to make server decide if client is close enough to location and respond accordingly
 	    
 	  	});
-=======
-	  });
->>>>>>> 1abc1faee9bbad1a89249e20902b3bec2108f8a2
+
 	});
 
 	/*
@@ -129,7 +126,7 @@ module.exports = function(app, client, passport){
 	 });
 
 	 app.get('/getbill/', function(req, res) {
-	 	res.send('https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg');
+	 	res.send('<img src="https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg">');
 	 });
 
 	/*
