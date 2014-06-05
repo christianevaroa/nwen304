@@ -106,7 +106,7 @@
       $.each(data, function(key, val){
         console.log(val); 
         // mymonsters.push(val);
-        $.getJSON(purl+val, function(data){
+        $.getJSON(purl+val.monsterid, function(data){
           monsters.push(data);
 
         });
