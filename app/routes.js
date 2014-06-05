@@ -125,7 +125,7 @@ module.exports = function(app, client, passport){
 	  });
 	 });
 
-	 app.get('getmonsterbyid/:id', function(req, res) {
+	 app.get('/getmonsterbyid/:id', function(req, res) {
 	 	client.query('SELECT * FROM monsters WHERE monsterid = '+req.params.id, function(err, result) {
 	 		res.send(result.rows);
 	 	});
