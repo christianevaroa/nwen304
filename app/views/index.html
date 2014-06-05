@@ -98,20 +98,23 @@
 
   $('#userlistmonster').bind("click", function(event, ui){
     console.log("click number");
-    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/mymonsters/1";
-    var purl = "http://pure-gorge-4988.herokuapp.com/getmonsterbyid/";
+    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/getallmymonsters/1";
+    // var purl = "http://pure-gorge-4988.herokuapp.com/getmonsterbyid/";
     var mymonsters = [];
 
     $.getJSON(jsonUrl, function(data){
-      $.each(data, function(key, val){
-        console.log(val); 
-        // mymonsters.push(val);
-        $.getJSON(purl+val.monsterid, function(data){
-          monsters.push(data);
+      console.log(data);
+      // mymonsters.push(data);
 
-        });
+      // $.each(data, function(key, val){
+      //   console.log(val); 
+      //   // mymonsters.push(val);
+      //   $.getJSON(purl+val.monsterid, function(data){
+      //     monsters.push(data);
 
-      });
+      //   });
+
+      // });
       
 
       //$(.getJSON)
