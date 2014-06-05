@@ -46,6 +46,7 @@
 			<input type="submit" value="list monsters" id="listmonster"/>
 			<a href="/addmonster" data-ajax="false">add monster</a><br>
       <a href="/map" data-ajax="false">Go to Map</a>
+      <input type="submit" value="my list of monsters" id="userlistmonster"/>
 		</div>
 
 		<div id="result">
@@ -95,47 +96,24 @@
     }, 'json');
   });
 
-	  var test = {
-  "command": "SELECT",
-  "rowCount": 3,
-  "oid": null,
-  "rows": [
-    {
-      "lat": -41.288916,
-      "lon": 174.767911,
-      "monster": "bob"
-    },
-    {
-      "lat": -41.28891,
-      "lon": 174.767919,
-      "monster": "falafel"
-    },
-    {
-      "lat": -41.285994,
-      "lon": 174.776049,
-      "monster": ""
-    }
-  ],
-  "fields": [
-    {
-      "name": "lat",
-      "dataTypeID": 701
-    },
-    {
-      "name": "lon",
-      "dataTypeID": 701
-    },
-    {
-      "name": "monster",
-      "dataTypeID": 25
-    }
-  ],
-  "_parsers": [
-    null,
-    null,
-    null
-  ]
-}
+  $('#userlistmonster').bind("click", function(event, ui){
+    console.log("click number");
+    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/mymonsters/1"
+    var mymonsters = [];
+
+    $.getJSON(jsonUrl, function(data){
+      $.each(data, function(key, val){
+        alert(data);
+
+
+      });
+
+
+    }, 'json');
+
+
+  });
+
 
 </script>
 </html>
