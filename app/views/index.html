@@ -106,27 +106,12 @@
       // console.log(data)
       mymonsters = data;
       $.each(data, function(key, val){ 
+          $('#result').append( "Name : " + val.name   );
           $('#result').append('<img src="' + val.picture + '">');
 
 
 
-
       });
-      // mymonsters.push(data);
-
-      // $.each(data, function(key, val){
-      //   console.log(val); 
-      //   // mymonsters.push(val);
-      //   $.getJSON(purl+val.monsterid, function(data){
-      //     monsters.push(data);
-
-      //   });
-
-      // });
-      
-
-      //$(.getJSON)
-
 
     }, 'json');
 
