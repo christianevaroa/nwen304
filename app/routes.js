@@ -25,7 +25,6 @@ module.exports = function(app, client, passport){
 	app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
 		function(req, res){
 			var jsonData = {"name" : "mr bojangles"};
-
 			res.json(jsonData);
 	});
 
@@ -110,7 +109,11 @@ module.exports = function(app, client, passport){
 	    else {
 	      res.send("fail lol");
 	    }
-	  });
+	    
+	    // Need to make server decide if client is close enough to location and respond accordingly
+	    
+	  	});
+
 	});
 
 	/*
@@ -123,7 +126,7 @@ module.exports = function(app, client, passport){
 	 });
 
 	 app.get('/getbill/', function(req, res) {
-	 	res.send('https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg');
+	 	res.send('<img src="https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg">');
 	 });
 
 	/*
