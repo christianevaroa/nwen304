@@ -139,9 +139,14 @@ module.exports = function(app, client, passport){
 	  */
 	 app.get('/getallmymonsters/:uid', function(req, res) {
 	 	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
-	 		var values = [];
+	 		var values = '(';
 	 		for(var i = 0; i < result.rows.length; i++){
-	 			values.push(result.rows[i].monsterid);
+	 			values+=result.rows[i].monsterid;
+	 			if(i+1 = result.rows.length){
+	 				values+=')';
+	 			} else {
+	 				values+=',';
+	 			}
 	 		}
 	 		client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
 	 			res.send(result2);
