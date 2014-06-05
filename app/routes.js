@@ -103,7 +103,7 @@ module.exports = function(app, client, passport){
 	    var dist = distance(+req.params.mylat, +req.params.mylon, +result.rows[0].lat, +result.rows[0].lon);
 
 	    if(dist < 0.001) {
-	      res.send(result2.rows[0]);
+	      res.send(result.rows[0]);
 	      // ADD MONSTER TO USER LIST
 	    }
 	    else {
