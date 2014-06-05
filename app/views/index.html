@@ -101,9 +101,17 @@
     var jsonUrl = "http://pure-gorge-4988.herokuapp.com/getallmymonsters/1";
     // var purl = "http://pure-gorge-4988.herokuapp.com/getmonsterbyid/";
     var mymonsters = [];
-
+    $('#result').html('');
     $.getJSON(jsonUrl, function(data){
-      console.log(data);
+      // console.log(data)
+      mymonsters = data;
+      $.each(data, function(key, val){ 
+          $('#result').append('<img src="' + val.picture + '">');
+
+
+
+
+      });
       // mymonsters.push(data);
 
       // $.each(data, function(key, val){
