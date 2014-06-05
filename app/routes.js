@@ -125,6 +125,12 @@ module.exports = function(app, client, passport){
 	  });
 	 });
 
+	 app.get('getmonsterbyid/:id', function(req, res) {
+	 	client.query('SELECT * FROM monsters WHERE monsterid = '+req.params.id, function(err, result) {
+	 		res.send(result.rows);
+	 	});
+	 })
+
 	 app.get('/getbill/', function(req, res) {
 	 	res.send('<img src="https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg">');
 	 });
