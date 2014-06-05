@@ -98,7 +98,7 @@
 
   $('#userlistmonster').bind("click", function(event, ui){
     console.log("click number");
-    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/getallmymonsters/1";
+    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/getallmymonsters/2";
     // var purl = "http://pure-gorge-4988.herokuapp.com/getmonsterbyid/";
     var mymonsters = [];
     $('#result').html('');
@@ -106,7 +106,7 @@
       // console.log(data)
       mymonsters = data;
       $.each(data, function(key, val){ 
-          $('#result').append( "Name : " + val.name   );
+          $('#result').append( "<p>Name : " + val.name  + "</p>" );
           $('#result').append('<img src="' + val.picture + '">');
 
 
