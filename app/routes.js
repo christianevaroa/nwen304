@@ -117,7 +117,7 @@ module.exports = function(app, client, passport){
 	 * Get list of monsters the user has caught
 	 */
 	 app.get('/mymonsters/:uid', function(req, res) {
-	  client.query('SELECT * FROM monsterdex WHERE userid = '+res.body.uid, function(err, result) {
+	  client.query('SELECT * FROM monsterdex WHERE userid = '+req.body.uid, function(err, result) {
 	    res.send(result.rows);
 	  });
 	 });
