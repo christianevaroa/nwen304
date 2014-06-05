@@ -142,14 +142,14 @@ module.exports = function(app, client, passport){
 	 		var values = '(';
 	 		for(var i = 0; i < result.rows.length; i++){
 	 			values+=result.rows[i].monsterid;
-	 			if(i+1 = result.rows.length){
+	 			if(i+1 == result.rows.length){
 	 				values+=')';
 	 			} else {
 	 				values+=',';
 	 			}
 	 		}
 	 		client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
-	 			res.send(result2);
+	 			res.send(result2.rows);
 	 		});
 	 	});
 	 });
