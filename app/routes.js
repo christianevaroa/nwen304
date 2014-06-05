@@ -125,11 +125,29 @@ module.exports = function(app, client, passport){
 	  });
 	 });
 
+	 /*
+	  * Get a monster by it's id
+	  */
 	 app.get('/getmonsterbyid/:id', function(req, res) {
 	 	client.query('SELECT * FROM monsters WHERE monsterid = '+req.params.id, function(err, result) {
 	 		res.send(result.rows);
 	 	});
-	 })
+	 });
+
+	 /*
+	  * Get a list of user's monsters
+	  */
+	 app.get('/getallmymonsters/:uid', function(req, res) {
+	 	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
+	 		var values = [];
+	 		for(var i = 0; i < result.rows.length; i++){
+	 			values.push(result.rows[i].monsterid);
+	 		}
+	 		client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
+	 			res.send(result2);
+	 		});
+	 	});
+	 });
 
 	 app.get('/getbill/', function(req, res) {
 	 	res.send('<img src="https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg">');
