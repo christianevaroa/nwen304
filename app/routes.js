@@ -149,7 +149,7 @@ module.exports = function(app, client, passport){
 	 			}
 	 		}
 	 		client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
-	 			res.send(result2);
+	 			res.send(result2.rows);
 	 		});
 	 	});
 	 });
