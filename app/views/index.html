@@ -103,7 +103,8 @@
 
     $.getJSON(jsonUrl, function(data){
       $.each(data, function(key, val){
-        alert(data.monsterid);
+          console.log(key); // index
+        console.log(val); 
 
 
       });
