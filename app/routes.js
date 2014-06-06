@@ -59,7 +59,6 @@ module.exports = function(app, client, passport){
 	});
 
 	app.get('/numberofrows', function(req, res) {
-
 	  client.query('SELECT * FROM monsters', function(err, result) {
 	    // res.send('number of rows: '+result.rows.length);
 	    var jsonval = { numberofrows: result.rows.length };
@@ -67,13 +66,18 @@ module.exports = function(app, client, passport){
 	  });
 	});
 
+	/*
+	 * Get monster at exact given location (kind of useless to be honest)
+	 */
 	app.get('/location/:lat/:lon', function(req,res) {
 	  client.query('SELECT * FROM monsters WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
 	    res.send(result);
 	  });
 	});
 
-
+	/*
+	 * Get a list of all the monsters in the database
+	 */
 	app.get('/monsterlist', function(req, res) {
 	  client.query('SELECT * FROM monsters', function(err, result){
 	    res.send(result);
@@ -94,24 +98,28 @@ module.exports = function(app, client, passport){
 	});
 
 	/*
-	 * Client sends current location, server decides if client is close enough to a location.
-	 * If client is close enough, send the monster to the client.
+	 * Client sends their id and current location, server decides if client is close enough to a location.
+	 * If client is close enough, send the monster to the client. Otherwise send error message.
 	 */
-	 app.get('/getmonster/:mylat/:mylon', function(req, res) {
+	 app.get('/getmonster/:uid/:mylat/:mylon', function(req, res) {
 	  client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
 	    //calculate distance in km from user's location to nearest location in table
 	    var dist = distance(+req.params.mylat, +req.params.mylon, +result.rows[0].lat, +result.rows[0].lon);
 
 	    if(dist < 0.001) {
-	      res.send(result.rows[0]);
-	      // ADD MONSTER TO USER LIST
+	      // Check if user has monster already and then decide what to do
+	      client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid+' AND monsterid = '+result.rows[0].monsterid, function(err2, result2) {
+	      	// User doesn't already have the monster, add it to their list
+	      	if(result2.rows.length == 0) {
+	      		client.query('INSERT INTO monsterdex (userid, monsterid) VALUES ($1,$2)', [req.params.uid, result.rows[0].monsterid]);
+	      	}
+	      	// Send the monster to the user
+	      	res.send(result.rows[0]);
+	      });
 	    }
 	    else {
 	      res.send("fail lol");
 	    }
-	    
-	    // Need to make server decide if client is close enough to location and respond accordingly
-	    
 	  	});
 
 	});
@@ -139,15 +147,8 @@ module.exports = function(app, client, passport){
 	  */
 	 app.get('/getallmymonsters/:uid', function(req, res) {
 	 	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
-	 		var values = '(';
-	 		for(var i = 0; i < result.rows.length; i++){
-	 			values+=result.rows[i].monsterid;
-	 			if(i+1 == result.rows.length){
-	 				values+=')';
-	 			} else {
-	 				values+=',';
-	 			}
-	 		}
+	 		// really nasty method to put all the monster ids into a format that SQL can read
+	 		var values = convertToSQL(result);
 	 		client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
 	 			res.send(result2.rows);
 	 		});
@@ -219,13 +220,25 @@ function isSignedIn(req, res, next) {
 	res.redirect('/signin');
 }
 
+function convertToSQL(list) {
+	var values ='(';
+	 		for(var i = 0; i < list.rows.length; i++){
+	 			values+=listt.rows[i].monsterid;
+	 			if(i+1 == list.rows.length){
+	 				values+=')';
+	 			} else {
+	 				values+=',';
+	 			}
+	 		}
+}
+
 
 
 // SQL stuff:
-// TABLE locations: lat (latitude), lon (longitude), monster (monster stored at that location)
 // TABLE monsterdex: userid (user's id), monsterid (id of a monster owned by that user)
 // TABLE friends: userid (user's id), friendid (id of another user that userid has added as a friend)
 // TABLE users: userid (user's id - assigned when signing up), name (username, 30 characters), score (total score from monsters collected), joindate (might not use this)
+// TABLE monsters: monsterid (monster's id - serial assigned on add), lat (latitude), lon (longitude), name (name, 20 characters), description (text description), picture (url of monster's picture)    ::  Need to add score?
 // 02/06 created new users table
 
 // CREATE TABLE users (id SERIAL, name varchar(30), password varchar(40), score integer, joindate DATE );
