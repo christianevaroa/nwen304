@@ -80,7 +80,7 @@ app.get('/numberofrows', function(req, res) {
 	 */
 	 app.get('/monsterlist', function(req, res) {
 	 	client.query('SELECT * FROM monsters', function(err, result){
-	 		res.send(result);
+	 		res.send(result.rows);
 	 	});
 	 });
 
