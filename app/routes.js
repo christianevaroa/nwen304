@@ -6,27 +6,27 @@ module.exports = function(app, client, passport){
  */
 
 
- 	app.get('/signin', function(req, res){
-		res.sendfile('/views/admin-signin.html', {root :__dirname });
-	});
+ app.get('/signin', function(req, res){
+ 	res.sendfile('/views/admin-signin.html', {root :__dirname });
+ });
 
-	app.post('/signin', 
-		passport.authenticate('local-signin', { session: false } ),
-		function(req, res) {
-			console.log('user ' );
+ app.post('/signin', 
+ 	passport.authenticate('local-signin', { session: false } ),
+ 	function(req, res) {
+ 		console.log('user ' );
 
-			var jsonData = { id: req.user.id, name: req.user.name };
+ 		var jsonData = { id: req.user.id, name: req.user.name };
 
 
-			console.log(jsonData);
-			res.json(jsonData);
-	});
+ 		console.log(jsonData);
+ 		res.json(jsonData);
+ 	});
 
-	app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
-		function(req, res){
-			var jsonData = {"name" : "mr bojangles"};
-			res.json(jsonData);
-	});
+ app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
+ 	function(req, res){
+ 		var jsonData = {"name" : "mr bojangles"};
+ 		res.json(jsonData);
+ 	});
 
 
 
@@ -34,75 +34,75 @@ module.exports = function(app, client, passport){
 	// 	passport.authenticate('local-signin', {successRedirect: '/', failureRedirect: '/signin', failureFlash: true}),
 	// 		function(req, res){
 	// 			res.sendfile('/views/index.html', { message: req.flash('error') });
-		
+
 	// });
 
 
-	app.get('/mytestfunction', function(req, res){
-		client.query('SELECT * FROM users', function(err, result){
-			res.send(result);
-		});
+app.get('/mytestfunction', function(req, res){
+	client.query('SELECT * FROM users', function(err, result){
+		res.send(result);
 	});
+});
 
-	app.get('/', function(req, res) {
-	  res.sendfile('/views/index.html', {root :__dirname });
-	});
+app.get('/', function(req, res) {
+	res.sendfile('/views/index.html', {root :__dirname });
+});
 
-	app.get('/admin', function(req, res){
-	  res.sendfile('/views/admin-signin.html', {root :__dirname });
-	});
+app.get('/admin', function(req, res){
+	res.sendfile('/views/admin-signin.html', {root :__dirname });
+});
 
-	app.get('/addmonster', function(req, res){
+app.get('/addmonster', function(req, res){
 
-	  res.sendfile('/views/monsterupload.html', {root: __dirname });
-	  
-	});
+	res.sendfile('/views/monsterupload.html', {root: __dirname });
 
-	app.get('/numberofrows', function(req, res) {
-	  client.query('SELECT * FROM monsters', function(err, result) {
+});
+
+app.get('/numberofrows', function(req, res) {
+	client.query('SELECT * FROM monsters', function(err, result) {
 	    // res.send('number of rows: '+result.rows.length);
 	    var jsonval = { numberofrows: result.rows.length };
 	    res.json( jsonval );
-	  });
 	});
+});
 
 	/*
 	 * Get monster at exact given location (kind of useless to be honest)
 	 */
-	app.get('/location/:lat/:lon', function(req,res) {
-	  client.query('SELECT * FROM monsters WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
-	    res.send(result);
-	  });
-	});
+	 app.get('/location/:lat/:lon', function(req,res) {
+	 	client.query('SELECT * FROM monsters WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
+	 		res.send(result);
+	 	});
+	 });
 
 	/*
 	 * Get a list of all the monsters in the database
 	 */
-	app.get('/monsterlist', function(req, res) {
-	  client.query('SELECT * FROM monsters', function(err, result){
-	    res.send(result);
-	  });
-	});
+	 app.get('/monsterlist', function(req, res) {
+	 	client.query('SELECT * FROM monsters', function(err, result){
+	 		res.send(result);
+	 	});
+	 });
 
-	app.get('/map', function(req, res) {
-	   res.sendfile('/views/map.html', {root: __dirname });
+	 app.get('/map', function(req, res) {
+	 	res.sendfile('/views/map.html', {root: __dirname });
 	 });
 
 	/*
 	 * Client sends current latitude and longitude, server returns list of 5 nearest locations
 	 */
-	app.get('/nearest/:mylat/:mylon', function(req, res) {
-	  client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 5', function(err, result) {
-	    res.send(result.rows);
-	  });
-	});
+	 app.get('/nearest/:mylat/:mylon', function(req, res) {
+	 	client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 5', function(err, result) {
+	 		res.send(result.rows);
+	 	});
+	 });
 
 	/*
 	 * Client sends their id and current location, server decides if client is close enough to a location.
 	 * If client is close enough, send the monster to the client. Otherwise send error message.
 	 */
 	 app.get('/getmonster/:uid/:mylat/:mylon', function(req, res) {
-	  client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
+	 	client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
 	    //calculate distance in km from user's location to nearest location in table
 	    var dist = distance(+req.params.mylat, +req.params.mylon, +result.rows[0].lat, +result.rows[0].lon);
 
@@ -116,82 +116,82 @@ module.exports = function(app, client, passport){
 	      	// Send the monster to the user
 	      	res.send(result.rows[0]);
 	      });
-	    }
-	    else {
-	      res.send("fail lol");
-	    }
-	  	});
-
+	  }
+	  else {
+	  	res.send("fail lol");
+	  }
 	});
+
+	 });
 
 	/*
 	 * Get list of monsters the user has caught
 	 */
 	 app.get('/mymonsters/:uid', function(req, res) {
-	  client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
-	    res.send(result.rows);
-	  });
-	 });
-
-	 /*
-	  * Get a monster by it's id
-	  */
-	 app.get('/getmonsterbyid/:id', function(req, res) {
-	 	client.query('SELECT * FROM monsters WHERE monsterid = '+req.params.id, function(err, result) {
+	 	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
 	 		res.send(result.rows);
 	 	});
 	 });
 
 	 /*
+	  * Get a monster by it's id
+	  */
+	  app.get('/getmonsterbyid/:id', function(req, res) {
+	  	client.query('SELECT * FROM monsters WHERE monsterid = '+req.params.id, function(err, result) {
+	  		res.send(result.rows);
+	  	});
+	  });
+
+	 /*
 	  * Get a list of user's monsters
 	  */
-	 app.get('/getallmymonsters/:uid', function(req, res) {
-	 	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
+	  app.get('/getallmymonsters/:uid', function(req, res) {
+	  	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
 	 		// really nasty method to put all the monster ids into a format that SQL can read
 	 		var values = convertToSQL(result);
 	 		client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
 	 			res.send(result2.rows);
 	 		});
 	 	});
-	 });
+	  });
 
-	 app.get('/getbill/', function(req, res) {
-	 	res.send('<img src="https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg">');
-	 });
+	  app.get('/getbill/', function(req, res) {
+	  	res.send('<img src="https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg">');
+	  });
 
 	/*
 	 * Post a new location
 	 * Requires latitude, longitude and monster name
 	 */
-	app.post('/location', function(req,res) {
-	  if(!req.body.hasOwnProperty('lat') || 
-	    !req.body.hasOwnProperty('lon') ||
-	    !req.body.hasOwnProperty('name') ||
-	    !req.body.hasOwnProperty('description') ||
-	    !req.body.hasOwnProperty('picture')){
-	     res.statusCode = 400;
-	     return res.send('Error 400: Post syntax incorrect.'); 
-	    }
-	    client.query('INSERT INTO monsters (lat, lon, name, description, picture) VALUES($1,$2,$3,$4,$5)', [req.body.lat, req.body.lon, req.body.name, req.body.description, req.body.picture]);
-	    lat = req.body.lat;
-	    lon = req.body.lon;
-	    monster = req.body.monster;
-	    res.json(true);
+	 app.post('/location', function(req,res) {
+	 	if(!req.body.hasOwnProperty('lat') || 
+	 		!req.body.hasOwnProperty('lon') ||
+	 		!req.body.hasOwnProperty('name') ||
+	 		!req.body.hasOwnProperty('description') ||
+	 		!req.body.hasOwnProperty('picture')){
+	 		res.statusCode = 400;
+	 	return res.send('Error 400: Post syntax incorrect.'); 
+	 }
+	 client.query('INSERT INTO monsters (lat, lon, name, description, picture) VALUES($1,$2,$3,$4,$5)', [req.body.lat, req.body.lon, req.body.name, req.body.description, req.body.picture]);
+	 lat = req.body.lat;
+	 lon = req.body.lon;
+	 monster = req.body.monster;
+	 res.json(true);
 	});
 
 	/*
 	 * Create a new user with a generated userid and send it back
 	 */
-	app.post('/createuser/:username', function(req,res) {
-	  client.query('SELECT * FROM users ORDER BY userid LIMIT 1', function(err, result) {
-	    var newid = +result.rows[0].userid + 1;
-	    client.query('INSERT INTO users (userid, name, score, joindate) VALUES($1,$2,$3,$4)', [newid, res.body.username, 0, new Date()]);
-	    client.query('SELECT * FROM users WHERE userid = '+newid, function(err2, result2) {
-	      res.send(result2.rows[0]);
-	    });
-	  });
-	});
-}
+	 app.post('/createuser/:username', function(req,res) {
+	 	client.query('SELECT * FROM users ORDER BY userid LIMIT 1', function(err, result) {
+	 		var newid = +result.rows[0].userid + 1;
+	 		client.query('INSERT INTO users (userid, name, score, joindate) VALUES($1,$2,$3,$4)', [newid, res.body.username, 0, new Date()]);
+	 		client.query('SELECT * FROM users WHERE userid = '+newid, function(err2, result2) {
+	 			res.send(result2.rows[0]);
+	 		});
+	 	});
+	 });
+	}
 
 // private functions, functions for money
 
@@ -200,14 +200,14 @@ module.exports = function(app, client, passport){
 /*
  * Work out distance in kilometres between 2 latitude/longitude locations 
  */
-var distance = function (lat1, lon1, lat2, lon2) {
+ var distance = function (lat1, lon1, lat2, lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = (lat2 - lat1) * Math.PI / 180;
   var dLon = (lon2 - lon1) * Math.PI / 180;
   var a = 
-     0.5 - Math.cos(dLat)/2 + 
-     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-     (1 - Math.cos(dLon))/2;
+  0.5 - Math.cos(dLat)/2 + 
+  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+  (1 - Math.cos(dLon))/2;
 
   return R * 2 * Math.asin(Math.sqrt(a));
 }
@@ -222,14 +222,15 @@ function isSignedIn(req, res, next) {
 
 function convertToSQL(list) {
 	var values ='(';
-	 		for(var i = 0; i < list.rows.length; i++){
-	 			values+=listt.rows[i].monsterid;
-	 			if(i+1 == list.rows.length){
-	 				values+=')';
-	 			} else {
-	 				values+=',';
-	 			}
-	 		}
+		for(var i = 0; i < list.rows.length; i++){
+			values+=list.rows[i].monsterid;
+			if(i+1 == list.rows.length){
+				values+=')';
+			} else {
+				values+=',';
+			}
+		}
+	return values;
 }
 
 
