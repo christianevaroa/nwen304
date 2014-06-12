@@ -71,7 +71,7 @@ app.get('/numberofrows', function(req, res) {
 	 */
 	 app.get('/location/:lat/:lon', function(req,res) {
 	 	client.query('SELECT * FROM monsters WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
-	 		res.send(result);
+	 		res.send(result.rows);
 	 	});
 	 });
 
