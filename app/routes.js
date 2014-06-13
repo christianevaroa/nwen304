@@ -57,6 +57,7 @@ app.get('/addmonster', function(req, res){
 });
 
 app.get('/numberofrows', function(req, res) {
+	res.setHeader("Access-Control-Allow-Origin", "*");
 	client.query('SELECT * FROM monsters', function(err, result) {
 	    // res.send('number of rows: '+result.rows.length);
 	    var jsonval = { numberofrows: result.rows.length };
@@ -68,6 +69,7 @@ app.get('/numberofrows', function(req, res) {
 	 * Get monster at exact given location (kind of useless to be honest)
 	 */
 	 app.get('/location/:lat/:lon', function(req,res) {
+	 	res.setHeader("Access-Control-Allow-Origin", "*");
 	 	client.query('SELECT * FROM monsters WHERE lat='+req.params.lat+' AND lon='+req.params.lon, function(err, result) {
 	 		res.send(result.rows);
 	 	});
@@ -90,6 +92,7 @@ app.get('/numberofrows', function(req, res) {
 	 * Client sends current latitude and longitude, server returns list of 5 nearest locations
 	 */
 	 app.get('/nearest/:mylat/:mylon', function(req, res) {
+	 	res.setHeader("Access-Control-Allow-Origin", "*");
 	 	client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 5', function(err, result) {
 	 		res.send(result.rows);
 	 	});
@@ -100,6 +103,7 @@ app.get('/numberofrows', function(req, res) {
 	 * If client is close enough, send the monster to the client. Otherwise send error message.
 	 */
 	 app.get('/getmonster/:uid/:mylat/:mylon', function(req, res) {
+	 	res.setHeader("Access-Control-Allow-Origin", "*");
 	 	client.query('SELECT * FROM monsters ORDER BY (ABS(lat - '+req.params.mylat+') + ABS(lon - '+req.params.mylon+')) LIMIT 1', function(err, result) {
 	    //calculate distance in km from user's location to nearest location in table
 	    var dist = distance(+req.params.mylat, +req.params.mylon, +result.rows[0].lat, +result.rows[0].lon);
@@ -126,6 +130,7 @@ app.get('/numberofrows', function(req, res) {
 	 * Get list of monsters the user has caught
 	 */
 	 app.get('/mymonsters/:uid', function(req, res) {
+	 	res.setHeader("Access-Control-Allow-Origin", "*");
 	 	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
 	 		res.send(result.rows);
 	 	});
@@ -135,6 +140,7 @@ app.get('/numberofrows', function(req, res) {
 	  * Get a monster by it's id
 	  */
 	  app.get('/getmonsterbyid/:id', function(req, res) {
+	  	res.setHeader("Access-Control-Allow-Origin", "*");
 	  	client.query('SELECT * FROM monsters WHERE monsterid = '+req.params.id, function(err, result) {
 	  		res.send(result.rows);
 	  	});
@@ -155,6 +161,7 @@ app.get('/numberofrows', function(req, res) {
 	  });
 
 	  app.get('/getbill/', function(req, res) {
+	  	res.setHeader("Access-Control-Allow-Origin", "*");
 	  	res.send('<img src="https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/billclinton.jpg">');
 	  });
 
