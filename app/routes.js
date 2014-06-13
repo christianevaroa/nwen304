@@ -144,6 +144,7 @@ app.get('/numberofrows', function(req, res) {
 	  * Get a list of user's monsters
 	  */
 	  app.get('/getallmymonsters/:uid', function(req, res) {
+	  	res.setHeader("Access-Control-Allow-Origin", "*");
 	  	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
 	 		// really nasty method to put all the monster ids into a format that SQL can read
 	 		var values = convertToSQL(result);
