@@ -17,18 +17,16 @@ module.exports = function(app, client, passport){
 
  		var jsonData = { id: req.user.id, name: req.user.name };
 
+		console.log(jsonData);
+		res.json(jsonData);
+	});
 
- 		console.log(jsonData);
- 		res.json(jsonData);
- 	});
-
- app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
- 	function(req, res){
- 		var jsonData = {"name" : "mr bojangles"};
- 		res.json(jsonData);
- 	});
-
-
+	app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
+		function(req, res){
+			var jsonData = {"name" : "mr bojangles"};
+			res.json(jsonData);
+	});
+	
 
 	// app.post('/signin', 
 	// 	passport.authenticate('local-signin', {successRedirect: '/', failureRedirect: '/signin', failureFlash: true}),
@@ -249,3 +247,13 @@ function convertToSQL(list) {
 
 
 // INSERT INTO users (name, score, password, joindate) VALUES('user', 69, 'user', current_date);
+
+
+// curl functions 
+
+// AUthenticate user & password GET request
+// curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET -d '{ "name": "user", "password":"user"}' http://pure-gorge-4988.herokuapp.com/testsignin
+
+
+// authenticate user & password  with POST request
+// curl -v  "Accept:application/json" -H "Content-type:application/json" -X POST -d '{ "name": "admin", "password":"admin"}' http://pure-gorge-4988.herokuapp.com/signin
