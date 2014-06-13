@@ -47,29 +47,31 @@ module.exports = function(passport, client) {
 		  process.nextTick(function() {
 		  	 findByUsername(username, function(err, user) {
 		  	 	console.log("findByUsername local-signup");
-		  	 		if(err){
-		  	 			return done(err);
-		  	 		}
-		  	 		if(user ){
-		  	 			// User already exists
-		  	 			return done(null, false, { message: 'That email is already taken.' });
-		  	 		} else {
-		  	 			// create new user 
-		  	 			addUserIntoDatabase(username, password, function(result){
-	  	 					var userId = result.rows[0].id;
+		  	 	if(err){
+		  	 		return done(err);
+		  	 	}
+		  	 	if(user ){
+		  	 		// User already exists
+		  	 		return done(null, false, { message: 'That email is already taken.' });
+		  	 	} else {
+		  	 		// create new user 
+		  	 		addUserIntoDatabase(username, password, function(result){
+	  	 				var userId = result.rows[0].id;
 	  	 					// console.log("user id = " + userId);
-	  	 					findById(userId, function(err, user){
-	  	 						return done(null, user ,  { message: 'Successful password'});
-	  	 					});	  	 				
-		  	 			});
-		  	 		}
+	  	 				findById(userId, function(err, user){
+	  	 					return done(null, user ,  { message: 'Successful password'});
+	  	 				});	  	 				
+		  	 		});
+		  	 	}
 		  	 });
 		  })
 		}
 	));
 
-// end sign up
-
+	// end sign up
+    /** 
+	 *	
+	 **/
 	passport.serializeUser(function(user, done) {
 	  done(null, user.id);
 	});

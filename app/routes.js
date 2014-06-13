@@ -17,7 +17,6 @@ module.exports = function(app, client, passport){
 
 			var jsonData = { id: req.user.id, name: req.user.name };
 
-
 			console.log(jsonData);
 			res.json(jsonData);
 	});
@@ -27,7 +26,7 @@ module.exports = function(app, client, passport){
 			var jsonData = {"name" : "mr bojangles"};
 			res.json(jsonData);
 	});
-
+	
 
 
 	// app.post('/signin', 
