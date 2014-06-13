@@ -1,8 +1,0 @@
-HTTP/1.1 400 Bad Request
-Date: Fri, 13 Jun 2014 00:11:46 GMT
-X-Powered-By: Express
-Content-Length: 11
-Connection: Keep-Alive
-Set-Cookie: connect.sid=s%3AmeIRn4gh3YZTcpyPIBU7dYoJ.VSwynuHX5mOq3SlKnXnNtW8Ljxzk50XnHmsKyi9QIQE; Path=/; Expires=Fri, 13 Jun 2014 00:21:46 GMT; HttpOnly
-
-Bad Request
