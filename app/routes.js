@@ -238,6 +238,7 @@ function convertToSQL(list) {
 				values+=',';
 			}
 		}
+		console.log(values);
 	return values;
 }
 
