@@ -13,7 +13,7 @@ module.exports = function(app, client, passport){
  app.post('/signin', 
  	passport.authenticate('local-signin', { session: false } ),
  	function(req, res) {
-		res.setHeader("Access-Control-Allow-Origin", "*");
+		//res.setHeader("Access-Control-Allow-Origin", "*");
  		console.log('user ' );
 
  		var jsonData = { id: req.user.id, name: req.user.name };
@@ -24,8 +24,8 @@ module.exports = function(app, client, passport){
 
 	app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
 		function(req, res){
-			res.setHeader("Access-Control-Allow-Origin", "*");
-			var jsonData = {"name" : "mr bojangles"};
+			//res.setHeader("Access-Control-Allow-Origin", "*");
+			var jsonData = { "name" : "mr bojangles"};
 			res.json(jsonData);
 	});
 	
