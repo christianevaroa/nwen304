@@ -24,7 +24,7 @@ module.exports = function(app, client, passport){
 
 	app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
 		function(req, res){
-			//res.setHeader("Access-Control-Allow-Origin", "*");
+			res.setHeader("Access-Control-Allow-Origin", "*");
 			var jsonData = { "name" : "mr bojangles"};
 			res.json(jsonData);
 	});
