@@ -230,9 +230,9 @@ function isSignedIn(req, res, next) {
 
 function convertToSQL(list) {
 	var values ='(';
-		for(var i = 0; i < list.rows.length; i++){
-			values+=list.rows[i].monsterid;
-			if(i+1 == list.rows.length){
+		for(var i = 0; i < list.length; i++){
+			values+=list[i].monsterid;
+			if(i+1 == list.length){
 				values+=')';
 			} else {
 				values+=',';
