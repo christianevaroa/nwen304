@@ -1,45 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 500px; width: 500px; }
-    </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkI5kDsdttdCHFA4aEj-mZuJVL7iXupBs&sensor=TRUE">
-    </script>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	html { height: 100% }
+	body { height: 100%; margin: 0; padding: 0 }
+	#map-canvas { height: 500px; width: 500px; }
+	</style>
+	<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkI5kDsdttdCHFA4aEj-mZuJVL7iXupBs&sensor=TRUE">
+	</script>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript">
 
-		$(document).ready(function(){  
+	$(document).ready(function(){  
+
+		var overlay;
+		USGSOverlay.prototype = new google.maps.OverlayView();
 
 		// array to store the monster markers
 		var markers = [ ];
 
-	    function initialize() {
+		function initialize() {
 	    	// options to pass set up map
-			var center = new google.maps.LatLng( -41.288916, 174.767911);
-			var mapOptions = {
-				center: center,
-				zoom: 12
-			};
+	    	var center = new google.maps.LatLng( -41.288916, 174.767911);
+	    	var mapOptions = {
+	    		center: center,
+	    		zoom: 15,
+	    		maxZoom: 17,
+	    		minZoom: 14
+	    	};
 			// set up new google map
-	        var map = new google.maps.Map(document.getElementById("map-canvas"),
-	            mapOptions);
-	        //
-	        var marker = new google.maps.Marker({
-	      		position: center,
-	      		map: map,
-	      		title: 'Hello World!' 
-	      	});
+			var map = new google.maps.Map(document.getElementById("map-canvas"),
+				mapOptions);
+
+	        var swBound = new google.maps.LatLng(-41.310935, 174.703182);
+	        var neBound = new google.maps.LatLng(-41.254932, 174.801525);
+	        var bounds = new google.maps.LatLngBounds(swBound, neBound);
+
+	        var srcImage = 'https://s3-ap-southeast-2.amazonaws.com/nwen304-assets/Main+Screens/map.png';
+
+	        overlay = new USGSOverlay(bounds, srcImage, map);
+
+	      	// bounds of the desired area
+	      	var allowedBounds = new google.maps.LatLngBounds(
+	      		new google.maps.LatLng(-41.289624, 174.732128), 
+	      		new google.maps.LatLng(-41.271228, 174.777973)
+	      		);
+	      	var lastValidCenter = map.getCenter();
+
+	      	google.maps.event.addListener(map, 'center_changed', function() {
+	      		if (allowedBounds.contains(map.getCenter())) {
+        // still within valid bounds, so save the last valid position
+        lastValidCenter = map.getCenter();
+        return; 
+    }
+
+    // not valid anymore => return to last valid position
+    map.panTo(lastValidCenter);
+});
 
 	    // get the list of all monsters in the app
-			var jsonUrl = "http://pure-gorge-4988.herokuapp.com/nearest/-41.288916/174.767911";
-			$.getJSON(jsonUrl, function(data) {
-		 	 	
-					$.each( data, function( key, val ) {
+	    var jsonUrl = "http://pure-gorge-4988.herokuapp.com/nearest/-41.288916/174.767911";
+	    $.getJSON(jsonUrl, function(data) {
+
+	    	$.each( data, function( key, val ) {
 					 	/* val is a json object that looks like this
 					 	{
 						    "lat": -41.288916,
@@ -47,40 +72,107 @@
 						    "monster": "bob"
 						}  */			 	
 						// create markers with each object
-					 	var monsterMarker = new google.maps.LatLng(val.lat, val.lon);
-					 	markers.push(monsterMarker);
-					 	new google.maps.Marker({
-					 		position : monsterMarker,
-					 		map : map,
-					 		title : val.name 
-					 	});
+						var monsterMarker = new google.maps.LatLng(val.lat, val.lon);
+						markers.push(monsterMarker);
+						new google.maps.Marker({
+							position : monsterMarker,
+							map : map,
+							title : val.name 
+						});
 					 	// options to draw the circle
 					 	var circleOptions = {
-					 	  strokeColor: '#FF0000',
-					      strokeOpacity: 0.8,
-					      strokeWeight: 2,
-					      fillColor: '#FF0000',
-					      fillOpacity: 0.35,
-					      map: map,
-					      center: monsterMarker,
+					 		strokeColor: '#FF0000',
+					 		strokeOpacity: 0.8,
+					 		strokeWeight: 2,
+					 		fillColor: '#FF0000',
+					 		fillOpacity: 0.35,
+					 		map: map,
+					 		center: monsterMarker,
 					      radius: 10 // radius in metres
-					 	};
+					  };
 					 	// draw the circle
 					 	new google.maps.Circle(circleOptions);
 
-				 	});
+					 });
 
-			}, 'json');
+	    }, 'json');
 	    } // end of initialize function
-    	
-	// now create the map when the window loads
-	google.maps.event.addDomListener(window, 'load', initialize);
 
-	});
-  
-    </script>
-  </head>
-  <body>
-    <div id="map-canvas"/>
-  </body>
+	    function USGSOverlay(bounds, image, map) {
+	    	this.bounds_ = bounds;
+	    	this.image_ = image;
+	    	this.map_ = map;
+
+	    	this.div_ = null;
+
+	    	this.setMap(map);
+	    	console.log(this);
+	    };
+
+/**
+ * onAdd is called when the map's panes are ready and the overlay has been
+ * added to the map.
+ */
+ USGSOverlay.prototype.onAdd = function() {
+
+ 	var div = document.createElement('div');
+ 	div.style.borderStyle = 'none';
+ 	div.style.borderWidth = '0px';
+ 	div.style.position = 'absolute';
+
+  // Create the img element and attach it to the div.
+  var img = document.createElement('img');
+  img.src = this.image_;
+  img.style.width = '100%';
+  img.style.height = '100%';
+  img.style.position = 'absolute';
+  div.appendChild(img);
+
+  this.div_ = div;
+
+  // Add the element to the "overlayLayer" pane.
+  var panes = this.getPanes();
+  panes.overlayLayer.appendChild(div);
+};
+
+USGSOverlay.prototype.draw = function() {
+
+  // We use the south-west and north-east
+  // coordinates of the overlay to peg it to the correct position and size.
+  // To do this, we need to retrieve the projection from the overlay.
+  var overlayProjection = this.getProjection();
+
+  // Retrieve the south-west and north-east coordinates of this overlay
+  // in LatLngs and convert them to pixel coordinates.
+  // We'll use these coordinates to resize the div.
+  var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+  var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+
+  // Resize the image's div to fit the indicated dimensions.
+  var div = this.div_;
+  div.style.left = sw.x + 'px';
+  div.style.top = ne.y + 'px';
+  div.style.width = (ne.x - sw.x) + 'px';
+  div.style.height = (sw.y - ne.y) + 'px';
+};
+
+// The onRemove() method will be called automatically from the API if
+// we ever set the overlay's map property to 'null'.
+USGSOverlay.prototype.onRemove = function() {
+	this.div_.parentNode.removeChild(this.div_);
+	this.div_ = null;
+};
+
+// now create the map when the window loads
+google.maps.event.addDomListener(window, 'load', initialize);
+
+});
+
+
+
+</script>
+</head>
+<body>
+	<div id="map-canvas"/>
+</body>
 </html>
