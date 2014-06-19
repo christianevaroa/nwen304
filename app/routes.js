@@ -158,7 +158,7 @@ app.get('/numberofrows', function(req, res) {
 	 		// really nasty method to put all the monster ids into a format that SQL can read
 	 		
 	 		// console.log(result);
-	 		if(result!=="undefined"){
+	 		if(result){
 	 			// error checking to make sure it isn't undefined because if it is it will crash the server
 				var values = convertToSQL(result);
 				client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
