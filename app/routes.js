@@ -157,11 +157,17 @@ app.get('/numberofrows', function(req, res) {
 	  	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
 	 		// really nasty method to put all the monster ids into a format that SQL can read
 	 		
-	 		console.log(result);
-	 		var values = convertToSQL(result);
-	 		client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
-	 			res.send(result2.rows);
-	 		});
+	 		// console.log(result);
+	 		if(result!=="undefined"){
+	 			// error checking to make sure it isn't undefined because if it is it will crash the server
+				var values = convertToSQL(result);
+				client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
+		 			res.send(result2.rows);
+		 		});
+	 		}else{
+	 			var jsonData = {};
+	 			res.json(jsonData);
+	 		}
 	 	});
 	  });
 
