@@ -22,7 +22,8 @@ module.exports = function(app, client, passport){
 		res.json(jsonData);
 	});
 
-	app.get('/testsignin', passport.authenticate('local-signin', { session: false}),
+	app.get('/testsignin', 
+		passport.authenticate('local-signin', { session: false}),
 		function(req, res){
 			res.setHeader("Access-Control-Allow-Origin", "*");
 			var jsonData = { "name" : "mr bojangles"};
@@ -155,6 +156,8 @@ app.get('/numberofrows', function(req, res) {
 	  	res.setHeader("Access-Control-Allow-Origin", "*");
 	  	client.query('SELECT * FROM monsterdex WHERE userid = '+req.params.uid, function(err, result) {
 	 		// really nasty method to put all the monster ids into a format that SQL can read
+	 		
+	 		console.log(result);
 	 		var values = convertToSQL(result);
 	 		client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
 	 			res.send(result2.rows);
