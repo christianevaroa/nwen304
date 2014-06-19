@@ -30,7 +30,7 @@ module.exports = function(passport, client) {
 	              return done(null, false, { message: 'Invalid password' }); 
 	            }
 	            	//everything ok
-	            	console.log("Successful pissword");
+	            	console.log("Successful password");
 	              return done(null, user, { message: 'Successful password'});
 	        })
 	    });

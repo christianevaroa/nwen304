@@ -160,6 +160,8 @@ app.get('/numberofrows', function(req, res) {
 	 		// console.log(result);
 	 		if(result){
 	 			// error checking to make sure it isn't undefined because if it is it will crash the server
+	 			// however if you enter an id that doesn't exist eg n+1 where n is numer of users
+	 			// it will crash hard and you will hate your life
 				var values = convertToSQL(result);
 				client.query('SELECT * FROM monsters WHERE monsterid in '+values, function(err2, result2) {
 		 			res.send(result2.rows);
